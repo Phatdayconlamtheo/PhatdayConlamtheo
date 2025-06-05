@@ -1,0 +1,64 @@
+
+body {
+  background: url('img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.circle-menu {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 100px auto;
+  border-radius: 50%;
+  animation: spin 60s linear infinite;
+}
+
+.menu-item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100px;
+  transform-origin: 150px 150px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.menu-item:hover {
+  background: #f9c74f;
+  transform: scale(1.1);
+}
+
+.center-button {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  width: 100px;
+  height: 100px;
+  background: #e63946;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.menu-item:nth-child(1) { transform: rotate(0deg) translate(150px) rotate(0deg); }
+.menu-item:nth-child(2) { transform: rotate(60deg) translate(150px) rotate(-60deg); }
+.menu-item:nth-child(3) { transform: rotate(120deg) translate(150px) rotate(-120deg); }
+.menu-item:nth-child(4) { transform: rotate(180deg) translate(150px) rotate(-180deg); }
+.menu-item:nth-child(5) { transform: rotate(240deg) translate(150px) rotate(-240deg); }
+.menu-item:nth-child(6) { transform: rotate(300deg) translate(150px) rotate(-300deg); }

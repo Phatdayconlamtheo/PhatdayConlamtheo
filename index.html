@@ -2,76 +2,24 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phật dạy Con làm theo</title>
-    <style>
-        body {
-            margin: 0;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/3/38/Seated_Buddha.jpg') no-repeat center center fixed;
-            background-size: cover;
-            font-family: "Georgia", serif;
-            color: white;
-            text-align: center;
-        }
-        .overlay {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 80px 20px;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 0.2em;
-        }
-        p.slogan {
-            font-size: 1.5em;
-            margin-bottom: 2em;
-        }
-        .circle-menu {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .circle-menu a {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid #fff;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            line-height: 100px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .circle-menu a:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-        .center-button {
-            margin-top: 40px;
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phật dạy Con làm theo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="overlay">
-        <h1>Phật dạy Con làm theo</h1>
-        <p class="slogan">“Giữa dòng đời vọng động, có một nơi để trở về – tĩnh tại, và sáng ngời.”</p>
-        <div class="circle-menu">
-            <a href="#">🎥 Video</a>
-            <a href="#">📖 Bài viết</a>
-            <a href="#">📜 Giới thiệu</a>
-            <a href="#">📚 Tủ sách</a>
-            <a href="#">🧘 Góc Thiền</a>
-            <a href="#">🎧 Tải MP3</a>
-        </div>
-        <div class="center-button">
-            <a href="#" style="text-decoration:none; color:white; font-size:1.5em;">🔔 Đăng ký Kênh</a>
-        </div>
-    </div>
+  <audio autoplay loop>
+    <source src="music/zen.mp3" type="audio/mp3">
+    Trình duyệt của bạn không hỗ trợ âm thanh.
+  </audio>
+  <div class="circle-menu">
+    <a href="video.html" class="menu-item">🎥 Video</a>
+    <a href="baiviet.html" class="menu-item">📖 Bài viết</a>
+    <a href="about.html" class="menu-item">📜 Giới thiệu</a>
+    <a href="tu-sach.html" class="menu-item">📚 Tủ sách</a>
+    <a href="goc-thien.html" class="menu-item">🧘 Góc Thiền</a>
+    <a href="mp3.html" class="menu-item">🎧 Tải MP3</a>
+    <a href="https://www.youtube.com/@phatdayconlamtheo" class="center-button" target="_blank">🔔 Đăng ký</a>
+  </div>
 </body>
 </html>
