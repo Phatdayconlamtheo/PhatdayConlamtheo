@@ -1,53 +1,62 @@
 
 body {
     margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to bottom, #fff0e6, #f2d6b3);
+    font-family: "Arial", sans-serif;
     overflow: hidden;
-    height: 100vh;
 }
-
+.background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: url('bg.jpg') center center / cover no-repeat;
+    filter: blur(5px) brightness(0.6);
+    z-index: -1;
+}
 .circle-menu {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    margin: 100px auto;
-    border-radius: 50%;
-    animation: rotate 60s infinite linear;
-}
-
-.circle-button {
-    position: absolute;
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    background: #ffcc99;
-    color: #5a3e1b;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transform-origin: 200px 200px;
-    transform: rotate(calc(60deg * var(--i))) translateY(-200px) rotate(calc(-60deg * var(--i)));
-}
-
-.center-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px 30px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    background: #ff9966;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    animation: rotate 60s linear infinite;
 }
-
+.menu-item {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.menu-item:nth-child(1) { transform: rotate(0deg) translate(140px) rotate(0deg); }
+.menu-item:nth-child(2) { transform: rotate(60deg) translate(140px) rotate(-60deg); }
+.menu-item:nth-child(3) { transform: rotate(120deg) translate(140px) rotate(-120deg); }
+.menu-item:nth-child(4) { transform: rotate(180deg) translate(140px) rotate(-180deg); }
+.menu-item:nth-child(5) { transform: rotate(240deg) translate(140px) rotate(-240deg); }
+.menu-item:nth-child(6) { transform: rotate(300deg) translate(140px) rotate(-300deg); }
+.center-button {
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    background: gold;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
 @keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
