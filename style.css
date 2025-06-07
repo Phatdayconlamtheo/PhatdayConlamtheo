@@ -1,52 +1,83 @@
-/* style.css */
 body {
-  margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: #fef9f1;
+  margin: 0;
+  padding: 0;
+  background: #fdf6e3;
   color: #333;
-  line-height: 1.6;
 }
 
-header, nav, footer {
+header {
   text-align: center;
-  padding: 1rem;
+  padding: 20px 10px;
+  background: #f5deb3;
 }
 
-a {
-  text-decoration: none;
-  color: #a35b28;
+.subtitle {
+  font-style: italic;
+  color: #555;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-section {
-  max-width: 800px;
-  margin: auto;
-  padding: 2rem;
-  background-color: #fffdf7;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(166, 132, 94, 0.1);
+.circle-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
 }
 
 .button {
-  display: inline-block;
-  background: #d2a679;
+  background-color: #d4a373;
   color: white;
-  padding: 0.6rem 1.2rem;
-  margin: 0.5rem;
-  border-radius: 50px;
-  transition: 0.3s;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s;
 }
 
 .button:hover {
-  background: #b07d56;
+  background-color: #b88c5b;
 }
 
-body {
-  background-image: url('images/phat-bg.jpg');
-  background-size: cover;
-  background-attachment: fixed;
+.content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 }
 
+.video-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.video-box {
+  flex: 1 1 45%;
+  min-width: 300px;
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+}
+
+.more-videos {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.more-videos h3 a {
+  text-decoration: none;
+  color: #b36b00;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+  background: #eee;
+  color: #666;
+}

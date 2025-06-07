@@ -2,136 +2,43 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Phật dạy Con làm theo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Be Vietnam Pro', sans-serif;
-      background-color: #3d2c15;
-      color: #f6e7ba;
-      text-align: center;
-    }
-    .hero {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Lord_Buddha.jpg/800px-Lord_Buddha.jpg') no-repeat center top;
-      background-size: cover;
-      padding: 100px 20px 40px;
-    }
-    h1 {
-      font-size: 60px;
-      font-weight: bold;
-      margin: 0;
-      line-height: 1.2;
-    }
-    .tagline {
-      margin-top: 20px;
-      font-size: 20px;
-      color: #f1dec9;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 50px;
-    }
-    .btn {
-      background: #f8e4b0;
-      color: #8a3b12;
-      border-radius: 50%;
-      width: 90px;
-      height: 90px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    iframe {
-      width: 90%;
-      max-width: 700px;
-      height: 400px;
-      margin: 50px auto;
-      display: block;
-      border-radius: 12px;
-      border: none;
-    }
-    .intro {
-      font-size: 22px;
-      max-width: 800px;
-      margin: 0 auto 100px;
-      line-height: 1.6;
-      color: #f3e0c2;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="hero">
-    <h1>PHẬT DẠY<br>CON LÀM<br>THEO</h1>
-    <div class="tagline">Giữa dòng đời vọng động, có một nơi để trở về – tĩnh tại, và sáng ngời.</div>
-    <div class="circle-menu">
-      <a href="gioi-thieu.html" title="Giới thiệu">📜</a>
-      <a href="video.html" title="Video">🎥</a>
-      <a href="bai-viet.html" title="Bài viết">📖</a>
-      <a href="https://www.youtube.com/@phatdaycon" class="center" title="Đăng ký YouTube" target="_blank">🔔</a>
-      <a href="tu-sach.html" title="Tủ sách">📚</a>
-      <a href="goc-thien.html" title="Góc Thiền">🧘</a>
-      <a href="tai-mp3.html" title="Tải MP3">🎧</a>
+  <header>
+    <h1>Phật dạy Con làm theo</h1>
+    <p class="subtitle">Nghe – Cảm – Làm theo lời Phật</p>
+  </header>
+
+  <section class="circle-menu">
+    <a href="video.html" class="button">🎥 Video</a>
+    <a href="baiviet.html" class="button">📖 Bài viết</a>
+    <a href="tusach.html" class="button">📚 Tủ sách</a>
+    <a href="gocthien.html" class="button">🧘 Góc Thiền</a>
+    <a href="mp3.html" class="button">🎧 Tải MP3</a>
+    <a href="https://www.youtube.com/@phatdayConlamtheo" target="_blank" class="button">🔔 Đăng ký</a>
+  </section>
+
+  <section class="content">
+    <h2>🎥 Video mới nhất</h2>
+    <div class="video-row">
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/e3uG3NOH0BU" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/e3uG3NOH0BU" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
-  </div>
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=SVN-Calligraphy&display=swap" rel="stylesheet">
-  <style>
-    .buttons {
-      text-align: center;
-      margin-top: 50px;
-    }
 
-    .btn {
-      font-family: 'SVN-Calligraphy', cursive;
-      color: red;
-      font-size: 32px;
-      margin: 0 5px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
+    <div class="more-videos">
+      <h3><a href="video.html">📺 Xem tất cả video</a></h3>
+    </div>
+  </section>
 
-    .btn:hover {
-      transform: scale(1.1);
-    }
-  </style>
-</head>
-<body>
-  <div class="buttons">
-    <a href="#" class="btn">Phật</a>
-    <a href="#" class="btn">dạy</a>
-    <a href="#" class="btn">Con</a>
-    <a href="#" class="btn">làm</a>
-    <a href="#" class="btn">theo</a>
-  </div>
-</body>
-
-<div class="circle-menu">
-  <a href="video.html" class="button">🎥 Video</a>
-  <a href="baiviet.html" class="button">📖 Bài viết</a>
-  <a href="tusach.html" class="button">📚 Tủ sách</a>
-  <a href="gocthien.html" class="button">🧘 Góc Thiền</a>
-  <a href="taimp3.html" class="button">🎧 Tải MP3</a>
-  <a href="https://www.youtube.com/@PhatdayConlamtheo" class="button">🔔 Đăng ký</a>
-</div>
-
-  <iframe src="https://www.youtube.com/embed/e3uG3NOH0BU"></iframe>
-
-  <div class="intro">
-    <h2>Phật dạy Con làm theo</h2>
-    <p>Trang web hướng về đời sống tỉnh thức, trí tuệ và giác ngộ từ Đức Phật, thực hành giữa đời thường. Chủ đề: giữ giới, quán chiếu khổ đau, tuệ giác, từ bi, vô thường, vô ngã và Niết-bàn.</p>
-  </div>
+  <footer>
+    <p>© 2025 Phật dạy Con làm theo – Mọi nội dung mang ý nghĩa hướng thiện, tĩnh lặng và biết ơn.</p>
+  </footer>
 </body>
 </html>
