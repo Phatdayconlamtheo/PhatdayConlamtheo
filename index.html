@@ -6,36 +6,13 @@
   <title>Phật dạy Con làm theo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<script>
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UC1sEFyFGeb2g2v5SkwuImHw")
-  .then(response => response.json())
-  .then(data => {
-    const container = document.getElementById("video-feed");
-    const items = data.items.slice(0, 2); // Hiển thị 2 video mới nhất
-    items.forEach(item => {
-      const videoId = item.link.split("v=")[1];
-      const iframe = document.createElement("iframe");
-      iframe.src = `https://www.youtube.com/embed/${videoId}`;
-      iframe.width = "100%";
-      iframe.height = "315";
-      iframe.allowFullscreen = true;
-      iframe.style.marginBottom = "20px";
-      container.appendChild(iframe);
-    });
-  })
-  .catch(err => {
-    console.error("Lỗi khi lấy video:", err);
-  });
-</script>
-
 <body>
-
   <audio autoplay loop>
     <source src="nhac-nen.mp3" type="audio/mpeg" />
   </audio>
 
   <div class="hero">
-<h1 style="text-align: center; color: #8B0000; margin-top: 20px;">Phật dạy Con làm theo</h1>
+<h1 style="text-align: center; color: #8B0000; margin-top: 0px;">Phật dạy Con làm theo</h1>
    
     <p class="subtitle">Kênh YouTube Chia sẻ 7 chủ đề: Phật pháp, Ăn chay, Thiền,</p>
  <p class="subtitle">Thiền cho người bận rộn, Đạo làm người, Hiếu kính cha mẹ và Lời hay ý đẹp.</p>
@@ -129,6 +106,29 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feed
     <footer style="background-color: #eee0d0; padding: 20px; text-align: center; margin-top: 60px;">
         <p style="color: #666;">© 2025 Phật dạy Con làm theo – Tâm lành gieo hạt, lời Phật thắp sáng</p>
     </footer>
+<script>
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UC1sEFyFGeb2g2v5SkwuImHw")
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("video-feed");
+    const items = data.items.slice(0, 2); // Hiển thị 2 video mới nhất
+    items.forEach(item => {
+     const match = item.link.match(/(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
+     const videoId = match ? match[1] : null;
+      if (videoId) {
+  const iframe = document.createElement("iframe");
+  iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  iframe.width = "100%";
+  iframe.height = "315";
+  iframe.allowFullscreen = true;
+  iframe.style.marginBottom = "20px";
+  container.appendChild(iframe);
+}
+  })
+  .catch(err => {
+    console.error("Lỗi khi lấy video:", err);
+  });
+</script>
 </body>
 </html>
 """
