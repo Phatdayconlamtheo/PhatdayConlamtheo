@@ -11,7 +11,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feed
   .then(response => response.json())
   .then(data => {
     const container = document.getElementById("video-feed");
-    const items = data.items.slice(0, 2); // Số video muốn hiện
+    const items = data.items.slice(0, 2); // Hiển thị 2 video mới nhất
     items.forEach(item => {
       const videoId = item.link.split("v=")[1];
       const iframe = document.createElement("iframe");
