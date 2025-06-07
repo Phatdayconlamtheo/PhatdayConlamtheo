@@ -43,3 +43,10 @@ section {
 .button:hover {
   background: #b07d56;
 }
+
+body {
+  background-image: url('images/phat-bg.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
