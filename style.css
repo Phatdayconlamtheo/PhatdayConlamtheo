@@ -10,36 +10,36 @@ body {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
   margin: 0;
   font-weight: bold;
-  color: #ffd700;
+  color: #red;
 }
 
 .subtitle {
   font-size: 1.5em;
   margin: 10px 0 10px;
   font-style: italic;
-  color: #fffacd;
+  color: #black;
 }
 
 .circle-menu {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto 50px;
 }
 
 .circle-menu a {
   position: absolute;
-  width: 150px;
-  height: 150px;
-  line-height: 120px;
+  width: 100px;
+  height: 100px;
+  line-height: 20px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   color: #fff8dc;
   text-decoration: none;
-  font-size: 90px;
+  font-size: 10px;
   font-weight: bold;
   transition: background 0.3s;
   border: 2px solid #ffd700;
