@@ -1,24 +1,16 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-  background: url("background.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff8e7;
-  text-align: center;
-}
+
 body {
   background-image: url('images/phat-bg.jpg');
-  background-size: cover;
+  background-size: 100%;
   background-attachment: fixed;
 }
 
 .hero {
-  padding: 80px 20px 40px;
   background: rgba(0, 0, 0, 0.6);
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 3em;
   margin: 0;
   font-weight: bold;
   color: #ffd700;
@@ -26,15 +18,15 @@ h1 {
 
 .subtitle {
   font-size: 1.5em;
-  margin: 10px 0 40px;
+  margin: 10px 0 10px;
   font-style: italic;
   color: #fffacd;
 }
 
 .circle-menu {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   margin: 0 auto 50px;
 }
 
@@ -97,7 +89,7 @@ h1 {
 }
 
 .video-box {
-  flex: 1 1 48%;
+  flex: 1 1 50%;
 }
 
 .video-box iframe {
