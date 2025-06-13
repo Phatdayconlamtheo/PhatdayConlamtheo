@@ -6,28 +6,28 @@ body {
 }
 
 .hero {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1,5em;
   margin: 0;
   font-weight: bold;
-  color: #red;
+  color: red;
 }
 
 .subtitle {
-  font-size: 1.5em;
+  font-size: 0,5em;
   margin: 10px 0 10px;
   font-style: italic;
-  color: #black;
+  color: black;
 }
 
 .circle-menu {
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto 50px;
+  width: 250px;
+  height: 250px;
+  margin: auto auto 50px;
 }
 
 .circle-menu a {
@@ -39,7 +39,7 @@ h1 {
   background: rgba(255, 255, 255, 0.15);
   color: #fff8dc;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   transition: background 0.3s;
   border: 2px solid #ffd700;
@@ -51,19 +51,19 @@ h1 {
 }
 
 .circle-menu .center {
-  top: 40%;
-  left: 40%;
+  top: 43%;
+  left: 43%;
   margin: -30px;
   background: #ff3333;
   color: #000;
 }
 
-.circle-menu a:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, 0); }
-.circle-menu a:nth-child(2) { top: 25%; left: 90%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(3) { top: 75%; left: 90%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); }
-.circle-menu a:nth-child(6) { top: 75%; left: 10%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(7) { top: 25%; left: 10%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(1) { top: -10%; left: 50%; transform: translate(-50%, 0); }
+.circle-menu a:nth-child(2) { top: 27%; left: 90%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(3) { top: 73%; left: 90%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(5) { top: 110%; left: 50%; transform: translate(-50%, -100%); }
+.circle-menu a:nth-child(6) { top: 73%; left: 10%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(7) { top: 27%; left: 10%; transform: translate(-50%, -50%); }
 
 
 .content {
