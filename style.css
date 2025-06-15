@@ -6,40 +6,66 @@ body {
 }
 
 .hero {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 h1 {
-  font-size: 1,5em;
+  text-align: center;
+  font-size: 2.8em;
+  margin: auto;
+  font-weight: bold;
+  color: yellow;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
   margin: 0;
   font-weight: bold;
   color: red;
 }
 
+h3 {
+  text-align: center;
+  font-size: 1.6em;
+  margin: auto;
+  font-weight: bold;
+  color: black;
+}
+
+h4 {
+  text-align: center;
+  font-size: 1.3em;
+  margin: auto;
+  font-weight: bold;
+  color: black;
+}
+
 .subtitle {
-  font-size: 0,5em;
+  text-align: center;
+  font-size: 1.5em;
   margin: 10px 0 10px;
   font-style: italic;
-  color: black;
+  color: #fffacd;
 }
 
 .circle-menu {
   position: relative;
-  width: 250px;
-  height: 250px;
-  margin: auto auto 50px;
+  width: 100px;
+  height: 100px;
+  margin: auto auto auto;
 }
 
 .circle-menu a {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  line-height: 20px;
+  width: 150px;
+  height: 150px;
+  line-height: 120px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   color: #fff8dc;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 90px;
   font-weight: bold;
   transition: background 0.3s;
   border: 2px solid #ffd700;
@@ -51,24 +77,24 @@ h1 {
 }
 
 .circle-menu .center {
-  top: 43%;
-  left: 43%;
+  top: 40%;
+  left: 40%;
   margin: -30px;
   background: #ff3333;
   color: #000;
 }
 
-.circle-menu a:nth-child(1) { top: -10%; left: 50%; transform: translate(-50%, 0); }
-.circle-menu a:nth-child(2) { top: 27%; left: 90%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(3) { top: 73%; left: 90%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(1) { top: -13%; left: 50%; transform: translate(-50%, 0); }
+.circle-menu a:nth-child(2) { top: 28%; left: 90%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(3) { top: 78%; left: 90%; transform: translate(-50%, -50%); }
 .circle-menu a:nth-child(5) { top: 110%; left: 50%; transform: translate(-50%, -100%); }
-.circle-menu a:nth-child(6) { top: 73%; left: 10%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(7) { top: 27%; left: 10%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(6) { top: 78%; left: 10%; transform: translate(-50%, -50%); }
+.circle-menu a:nth-child(7) { top: 28%; left: 10%; transform: translate(-50%, -50%); }
 
 
 .content {
   background: rgba(0, 0, 0, 0.6);
-  padding: 40px 20px;
+  padding: 12px 24px;
   max-width: 800px;
   margin: auto;
 }
