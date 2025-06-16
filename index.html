@@ -12,8 +12,36 @@
   <body>
     <audio controls autoplay=1 loop=1>
       <source src="nhac-nen.mp3" type="audio/mpeg" />
-      Trinh duyet khong ho tro the audio.
+      Trình duyệt không hỗ trợ audio.
     </audio>
+    <button onclick="readArticle()">Đọc bài báo</button>
+<div id="output"></div>
+
+<script>
+  function readArticle() {
+    // Đây là một ví dụ cơ bản: lấy tất cả đoạn <p>
+    const paragraphs = Array.from(document.querySelectorAll("p"));
+    const text = paragraphs.map(p => p.innerText).join("\n\n");
+
+    // Hiển thị ra div (hoặc xử lý tiếp)
+    document.getElementById("output").innerText = text;
+  }
+</script>
+<button onclick="speakArticle()">Đọc to bài báo</button>
+
+<script>
+  function speakArticle() {
+    const text = Array.from(document.querySelectorAll("p"))
+      .map(p => p.innerText)
+      .join(". ");
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = 'vi-VN'; // Tiếng Việt
+    window.speechSynthesis.speak(speech);
+  }
+</script>
+
+    <nav
     <div class="hero">
       <h1><strong>Phật dạy<br> Con làm theo</strong></h1>
     </div>
