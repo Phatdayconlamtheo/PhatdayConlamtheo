@@ -29,6 +29,79 @@
         frameborder="0"
         allowfullscreen
       ></iframe>
+      <!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Video Có Nút Bật Tiếng</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      padding-top: 50px;
+    }
+    iframe {
+      width: 560px;
+      height: 315px;
+      border: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1db954;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #14833b;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎶 Một đoạn nhạc cho tâm hồn bạn</h1>
+
+  <div id="player-container">
+    <iframe id="ytplayer"
+      src="https://www.youtube.com/embed/e3uG3NOH0BU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=e3uG3NOH0BU&controls=0&rel=0&modestbranding=1"
+      allow="autoplay"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <button id="unmute-btn">🔊 Bật tiếng</button>
+
+  <script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytplayer', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      document.getElementById('unmute-btn').addEventListener('click', () => {
+        player.unMute();
+        player.setVolume(100);
+      });
+    }
+
+    // Tải API của YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  </script>
+
+</body>
+</html>
+
     </main>
     <a href="index.html" class="back-link">← Về Trang chủ</a>
     <footer>
