@@ -1,10 +1,32 @@
-
 body {
-  background-image: url('images/phat-bg.jpg');
+  background-image: url("images/phat-bg.jpg");
   background-size: 100%;
   background-attachment: fixed;
+body {
+  background: #111;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+  padding-top: 50px;
 }
-
+iframe {
+  width: 560px;
+  height: 315px;
+  border: none;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: #1db954;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #14833b;
+}
 .hero {
   background: rgba(0, 0, 0, 0.6);
 }
@@ -84,13 +106,36 @@ h4 {
   color: #000;
 }
 
-.circle-menu a:nth-child(1) { top: -13%; left: 50%; transform: translate(-50%, 0); }
-.circle-menu a:nth-child(2) { top: 28%; left: 90%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(3) { top: 78%; left: 90%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(5) { top: 110%; left: 50%; transform: translate(-50%, -100%); }
-.circle-menu a:nth-child(6) { top: 78%; left: 10%; transform: translate(-50%, -50%); }
-.circle-menu a:nth-child(7) { top: 28%; left: 10%; transform: translate(-50%, -50%); }
-
+.circle-menu a:nth-child(1) {
+  top: -13%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.circle-menu a:nth-child(2) {
+  top: 28%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+.circle-menu a:nth-child(3) {
+  top: 78%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+.circle-menu a:nth-child(5) {
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.circle-menu a:nth-child(6) {
+  top: 78%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+.circle-menu a:nth-child(7) {
+  top: 28%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
 
 .content {
   background: rgba(0, 0, 0, 0.6);
@@ -168,14 +213,14 @@ h4 {
   background: #fff8e1;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .more-videos h3 {
   font-size: 20px;
   color: #8e6f3e;
   margin-bottom: 15px;
-  font-family: 'Georgia', serif;
+  font-family: "Georgia", serif;
 }
 
 .more-videos ul {
