@@ -11,7 +11,31 @@
   </head>
   <body>
     
-    <button onclick="readArticle()">ĐOC NOI DUNG TRANG</button>
+     <!-- Weather Widget: Top of Page -->
+<div id="weather-widget" style="background:#fdf6e3; padding:10px; text-align:center; font-family:sans-serif; position:fixed; top:0; left:0; right:0; z-index:9999; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+  <span id="weather-info">Đang tải thông tin thời tiết...</span>
+</div>
+
+<script>
+  async function getWeather(lat, lon) {
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+    const data = await res.json();
+    const weather = data.current_weather;
+    document.getElementById("weather-info").innerText =
+      `Thời tiết tại vị trí của bạn: ${weather.temperature}°C, ${weather.weathercode === 0 ? 'Trời quang' : 'Trạng thái khác'}`;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => getWeather(position.coords.latitude, position.coords.longitude),
+      () => document.getElementById("weather-info").innerText = "Không thể lấy vị trí để dự báo thời tiết."
+    );
+  } else {
+    document.getElementById("weather-info").innerText = "Trình duyệt không hỗ trợ định vị.";
+  }
+</script>
+    
+    <button onclick="readArticle()"><br> ĐOC NOI DUNG TRANG</button>
 <div id="output"></div>
 
 <script>
@@ -184,29 +208,7 @@
     
   </script>
     
-    <!-- Weather Widget: Top of Page -->
-<div id="weather-widget" style="background:#fdf6e3; padding:10px; text-align:center; font-family:sans-serif; position:fixed; top:0; left:0; right:0; z-index:9999; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
-  <span id="weather-info">Đang tải thông tin thời tiết...</span>
-</div>
-
-<script>
-  async function getWeather(lat, lon) {
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-    const data = await res.json();
-    const weather = data.current_weather;
-    document.getElementById("weather-info").innerText =
-      `Thời tiết tại vị trí của bạn: ${weather.temperature}°C, ${weather.weathercode === 0 ? 'Trời quang' : 'Trạng thái khác'}`;
-  }
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => getWeather(position.coords.latitude, position.coords.longitude),
-      () => document.getElementById("weather-info").innerText = "Không thể lấy vị trí để dự báo thời tiết."
-    );
-  } else {
-    document.getElementById("weather-info").innerText = "Trình duyệt không hỗ trợ định vị.";
-  }
-</script>
+   
     
     <!-- News Ticker: Bottom of Page -->
 <div id="news-ticker" style="position:fixed; bottom:0; left:0; right:0; background:#222; color:#fff; padding:10px; font-family:sans-serif; overflow:hidden; z-index:9999;">
