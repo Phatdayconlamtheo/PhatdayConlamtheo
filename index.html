@@ -66,11 +66,11 @@
     </div>
     <section class="video-section">
       <h2>🎥 XEM VIDEO MỚI NHẤT</h2>
+            
+  <h3>🎶 Một đoạn nhạc cho tâm hồn bạn</h3>
+      
     <div class="video-row">
     <div class="video-box">
-      
-         
-  <h1>🎶 Một đoạn nhạc cho tâm hồn bạn</h1>
 
   <div id="player-container">
     <iframe id="ytplayer"
@@ -104,6 +104,42 @@
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
   </script>
+      
+      <div class="video-box">
+
+  <div id="player-container">
+    <iframe id="ytplayer"
+      src="https://www.youtube.com/embed/e3uG3NOH0BU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=e3uG3NOH0BU&controls=0&rel=0&modestbranding=1"
+      allow="autoplay"
+      allowfullscreen
+    ></iframe>
+  </div>
+         
+  <button id="unmute-btn">🔊 Bật tiếng</button>
+      
+  <script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytplayer', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      document.getElementById('unmute-btn').addEventListener('click', () => {
+        player.unMute();
+        player.setVolume(100);
+      });
+    }
+
+    // Tải API của YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+  </script>
+      
     <div class="video-box">
       <iframe src="https://www.youtube.com/embed/V-TQ5N9ONdU" allowfullscreen>
       </iframe>
