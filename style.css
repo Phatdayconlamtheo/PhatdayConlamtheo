@@ -2,6 +2,7 @@ body {
   background-image: url("images/phat-bg.jpg");
   background-size: 100%;
   background-attachment: fixed;
+  
 body {
   background: #111;
   color: white;
@@ -9,11 +10,8 @@ body {
   font-family: sans-serif;
   padding-top: 50px;
 }
-iframe {
-  width: 560px;
-  height: 315px;
-  border: none;
-}
+  
+  
 button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -24,9 +22,11 @@ button {
   color: white;
   cursor: pointer;
 }
+  
 button:hover {
   background-color: #14833b;
 }
+  
 .hero {
   background: rgba(0, 0, 0, 0.6);
 }
