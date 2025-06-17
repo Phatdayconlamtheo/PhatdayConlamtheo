@@ -112,8 +112,8 @@ h4 {
 }
 
 .circle-menu .center {
-  top: 40%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   margin: -30px;
   background: #ff3333;
   color: #000;
@@ -126,27 +126,27 @@ h4 {
 }
 .circle-menu a:nth-child(2) {
   top: 28%;
-  left: 90%;
+  left: 100%;
   transform: translate(-50%, -50%);
 }
 .circle-menu a:nth-child(3) {
   top: 78%;
-  left: 90%;
+  left: 100%;
   transform: translate(-50%, -50%);
 }
 .circle-menu a:nth-child(5) {
-  top: 110%;
+  top: 120%;
   left: 50%;
   transform: translate(-50%, -100%);
 }
 .circle-menu a:nth-child(6) {
   top: 78%;
-  left: 10%;
+  left: 0%;
   transform: translate(-50%, -50%);
 }
 .circle-menu a:nth-child(7) {
   top: 28%;
-  left: 10%;
+  left: 0%;
   transform: translate(-50%, -50%);
 }
 
