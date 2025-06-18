@@ -63,7 +63,7 @@
   }
 </script>
 
-    !<audio controls autoplay=1 loop=1>
+    <audio controls autoplay=1 loop=1>
       <source src="nhac-nen.mp3" type="audio/mpeg" />
       Trình duyệt không hỗ trợ audio.
     </audio>
@@ -116,6 +116,285 @@
     });
   </script>
 
+ <div class="player">
+    <h2>🧘 Nhạc Thiền Phật Giáo</h2>
+
+    <select id="themeSelect" onchange="loadTheme()">
+      <option value="thien">🧘 Ngồi Thiền</option>
+      <option value="hocphap">📚 Học Pháp</option>
+      <option value="tungkinh">📿 Tụng Kinh</option>
+      <option value="thanhloc">💧 Thanh Lọc Tâm</option>
+    </select>
+
+    <select id="trackList" onchange="changeTrack()"></select>
+
+    <button onclick="toggleDarkMode()">🌓 Đổi Giao Diện</button>
+
+    <audio id="audioPlayer" controls autoplay loop>
+      Trình duyệt không hỗ trợ audio.
+    </audio>
+  </div>
+
+  <script>
+    const player = document.getElementById("audioPlayer");
+    const trackList = document.getElementById("trackList");
+    const themes = {
+      thien: [
+        { name: "Gió Thiền Nhẹ Nhàng", url: "https://example.com/nhac/gio-thien.mp3" },
+        { name: "Chuông Xa Vọng", url: "https://example.com/nhac/chuong-vong.mp3" }
+      ],
+      hocphap: [
+        { name: "Tiếng Sáo Tĩnh Tâm", url: "https://example.com/nhac/sao-tinh-tam.mp3" },
+        { name: "Pháp Âm Nhẹ Nhàng", url: "https://example.com/nhac/phap-am.mp3" }
+      ],
+      tungkinh: [
+        { name: "Tụng Kinh Buổi Sáng", url: "https://example.com/nhac/tung-sang.mp3" },
+        { name: "Om Mani Padme Hum", url: "https://example.com/nhac/om-mani.mp3" }
+      ],
+      thanhloc: [
+        { name: "Suối Nguồn Tâm Thức", url: "https://example.com/nhac/suoi-nguon.mp3" },
+        { name: "Hơi Thở Vô Ưu", url: "https://example.com/nhac/hoi-tho.mp3" }
+      ]
+    };
+
+    function loadTheme() {
+      const selectedTheme = document.getElementById("themeSelect").value;
+      const tracks = themes[selectedTheme];
+
+      trackList.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const option = document.createElement("option");
+        option.value = track.url;
+        option.textContent = `${index + 1}. ${track.name}`;
+        trackList.appendChild(option);
+      });
+
+      player.src = tracks[0].url;
+      player.play();
+    }
+
+    function changeTrack() {
+      player.src = trackList.value;
+      player.play();
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Auto load default theme
+    loadTheme();
+
+    player.addEventListener("ended", function () {
+      let nextIndex = (trackList.selectedIndex + 1) % trackList.length;
+      trackList.selectedIndex = nextIndex;
+      player.src = trackList.value;
+      player.play();
+    });
+  </script>
+
+  <div class="player">
+    <div class="icon" id="icon">🧘</div>
+    <h2>Nhạc Thiền Phật Giáo</h2>
+
+    <select id="themeSelect" onchange="loadTheme()">
+      <option value="thien">🧘 Ngồi Thiền</option>
+      <option value="hocphap">📚 Học Pháp</option>
+      <option value="tungkinh">📿 Tụng Kinh</option>
+      <option value="thanhloc">💧 Thanh Lọc Tâm</option>
+    </select>
+
+    <select id="trackList" onchange="changeTrack()"></select>
+
+    <button onclick="toggleDarkMode()">🌓 Đổi Giao Diện</button>
+
+    <button onclick="setTimer(10)">⏰ Hẹn giờ 10 phút</button>
+    <button onclick="setTimer(30)">⏰ Hẹn giờ 30 phút</button>
+    <button onclick="setTimer(60)">⏰ Hẹn giờ 60 phút</button>
+
+    <div class="timer" id="timerInfo">⏱ Không hẹn giờ</div>
+
+    <audio id="audioPlayer" controls autoplay loop>
+      Trình duyệt không hỗ trợ audio.
+    </audio>
+  </div>
+
+  <script>
+    const player = document.getElementById("audioPlayer");
+    const trackList = document.getElementById("trackList");
+    const icon = document.getElementById("icon");
+    const timerInfo = document.getElementById("timerInfo");
+
+    const themes = {
+      thien: {
+        icon: "🧘",
+        tracks: [
+          { name: "Gió Thiền Nhẹ Nhàng", url: "https://example.com/nhac/gio-thien.mp3" },
+          { name: "Chuông Xa Vọng", url: "https://example.com/nhac/chuong-vong.mp3" }
+        ]
+      },
+      hocphap: {
+        icon: "📚",
+        tracks: [
+          { name: "Tiếng Sáo Tĩnh Tâm", url: "https://example.com/nhac/sao-tinh-tam.mp3" },
+          { name: "Pháp Âm Nhẹ Nhàng", url: "https://example.com/nhac/phap-am.mp3" }
+        ]
+      },
+      tungkinh: {
+        icon: "📿",
+        tracks: [
+          { name: "Tụng Kinh Buổi Sáng", url: "https://example.com/nhac/tung-sang.mp3" },
+          { name: "Om Mani Padme Hum", url: "https://example.com/nhac/om-mani.mp3" }
+        ]
+      },
+      thanhloc: {
+        icon: "💧",
+        tracks: [
+          { name: "Suối Nguồn Tâm Thức", url: "https://example.com/nhac/suoi-nguon.mp3" },
+          { name: "Hơi Thở Vô Ưu", url: "https://example.com/nhac/hoi-tho.mp3" }
+        ]
+      }
+    };
+
+    let timerID = null;
+
+    function loadTheme() {
+      const selectedTheme = document.getElementById("themeSelect").value;
+      const { icon: themeIcon, tracks } = themes[selectedTheme];
+
+      icon.textContent = themeIcon;
+      trackList.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const option = document.createElement("option");
+        option.value = track.url;
+        option.textContent = `${index + 1}. ${track.name}`;
+        trackList.appendChild(option);
+      });
+
+      player.src = tracks[0].url;
+      player.play();
+    }
+
+    function changeTrack() {
+      player.src = trackList.value;
+      player.play();
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    function setTimer(minutes) {
+      if (timerID) {
+        clearTimeout(timerID);
+      }
+      const ms = minutes * 60 * 1000;
+      timerInfo.textContent = `⏳ Sẽ tắt sau ${minutes} phút...`;
+      timerID = setTimeout(() => {
+        player.pause();
+        timerInfo.textContent = "⏱ Đã tắt nhạc theo hẹn giờ.";
+      }, ms);
+    }
+
+    // Auto load mặc định
+    loadTheme();
+
+    player.addEventListener("ended", function () {
+      let nextIndex = (trackList.selectedIndex + 1) % trackList.length;
+      trackList.selectedIndex = nextIndex;
+      player.src = trackList.value;
+      player.play();
+    });
+  </script>
+
+  <audio id="audioPlayer" controls autoplay loop>
+  Trình duyệt không hỗ trợ audio.
+</audio>
+
+<script>
+  const player = document.getElementById("audioPlayer");
+  const trackList = document.getElementById("trackList");
+  const icon = document.getElementById("icon");
+  const timerInfo = document.getElementById("timerInfo");
+
+  const themes = {
+    thien: {
+      icon: "🧘",
+      tracks: [
+        { name: "Gió Thiền Nhẹ Nhàng", url: "https://example.com/nhac/gio-thien.mp3", fallback: "offline/gio-thien.mp3" },
+        { name: "Chuông Xa Vọng", url: "https://example.com/nhac/chuong-vong.mp3", fallback: "offline/chuong-vong.mp3" }
+      ]
+    },
+    hocphap: {
+      icon: "📚",
+      tracks: [
+        { name: "Tiếng Sáo Tĩnh Tâm", url: "https://example.com/nhac/sao-tinh-tam.mp3", fallback: "offline/sao-tinh-tam.mp3" },
+        { name: "Pháp Âm Nhẹ Nhàng", url: "https://example.com/nhac/phap-am.mp3", fallback: "offline/phap-am.mp3" }
+      ]
+    },
+    // Các chủ đề khác tương tự...
+  };
+
+  let currentTheme = "thien";
+  let timerID = null;
+
+  function loadTheme() {
+    currentTheme = document.getElementById("themeSelect").value;
+    const { icon: themeIcon, tracks } = themes[currentTheme];
+
+    icon.textContent = themeIcon;
+    trackList.innerHTML = '';
+    tracks.forEach((track, index) => {
+      const option = document.createElement("option");
+      option.value = track.url;
+      option.textContent = `${index + 1}. ${track.name}`;
+      trackList.appendChild(option);
+    });
+
+    player.src = tracks[0].url;
+    player.dataset.fallback = tracks[0].fallback;
+    player.play();
+  }
+
+  function changeTrack() {
+    const selectedTheme = themes[currentTheme];
+    const selectedTrack = selectedTheme.tracks[trackList.selectedIndex];
+    player.src = selectedTrack.url;
+    player.dataset.fallback = selectedTrack.fallback;
+    player.play();
+  }
+
+  function setTimer(minutes) {
+    if (timerID) clearTimeout(timerID);
+    timerInfo.textContent = `⏳ Sẽ tắt sau ${minutes} phút...`;
+    timerID = setTimeout(() => {
+      player.pause();
+      timerInfo.textContent = "⏱ Đã tắt nhạc theo hẹn giờ.";
+    }, minutes * 60000);
+  }
+
+  // 🛡️ Nếu không load được file => fallback sang bản offline
+  player.addEventListener("error", () => {
+    const fallbackURL = player.dataset.fallback;
+    if (fallbackURL && player.src !== location.origin + "/" + fallbackURL) {
+      console.warn("Mạng lỗi, chuyển sang nhạc offline:", fallbackURL);
+      player.src = fallbackURL;
+      player.play();
+    } else {
+      console.error("Không có nhạc online hoặc offline.");
+    }
+  });
+
+  // 🔁 Tự chuyển bài tiếp theo
+  player.addEventListener("ended", function () {
+    let nextIndex = (trackList.selectedIndex + 1) % trackList.length;
+    trackList.selectedIndex = nextIndex;
+    changeTrack();
+  });
+
+  // 🚀 Load mặc định
+  loadTheme();
+</script>
     <nav
     <div class="hero">
       <h1><strong>Phật dạy<br> Con làm theo</strong></h1>
