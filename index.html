@@ -98,116 +98,140 @@
     <div class="video-row">
     <div class="video-box">
      
-         
-  <h3>🎶 Một đoạn nhạc cho tâm hồn bạn</h3>
+   
+  <h2>🎼 Giao hưởng YouTube - Âm thanh cho tâm hồn</h2>
 
-  <div class="video-block">
-    <iframe id="ytplayer1"
-      src="https://www.youtube.com/embed/e3uG3NOH0BU?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=e3uG3NOH0BU&controls=0&rel=0&modestbranding=1"
-      allow="autoplay"
-      allowfullscreen
-    ></iframe>
-    <button class="mute-toggle" data-player-id="ytplayer1">🔇 Tắt tiếng</button>
+  <!-- 🎬 Danh sách video (bạn chỉ cần thêm data-video-id là được!) -->
+  <div class="video-block" data-player-id="yt1" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt1"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
   </div>
 
-      
-  <!-- Thêm nhiều video nếu muốn -->
-  <div class="video-block">
-    <iframe id="ytplayer2"
-      src="https://www.youtube.com/embed/KxGRhd_iWuE?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=KxGRhd_iWuE&controls=0&rel=0&modestbranding=1"
-      allow="autoplay"
-      allowfullscreen
-    ></iframe>
-    <button class="mute-toggle" data-player-id="ytplayer2">🔇 Tắt tiếng</button>
+  <div class="video-block" data-player-id="yt2" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt2"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <div class="video-block" data-player-id="yt3" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt3"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+  
+  <div class="video-block" data-player-id="yt4" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt4"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <!-- ⚙️ Điều chỉnh tốc độ fade -->
+  <div class="fade-speed">
+    ⏱️ Tốc độ fade âm lượng:
+    <input id="fade-speed" type="range" min="100" max="1000" value="200">
+    <span id="fade-val">200 ms</span>
   </div>
 
   <script>
     const players = {};
+    let fadeSpeed = 200;
 
-    function onYouTubeIframeAPIReady() {
-      document.querySelectorAll('iframe[id^="ytplayer"]').forEach(iframe => {
-        const playerId = iframe.id;
-        players[playerId] = new YT.Player(playerId, {
-          events: {
-            'onReady': () => setupMuteButton(playerId)
-          }
-        });
-      });
-    }
-
-    function setupMuteButton(playerId) {
-      const button = document.querySelector(`button[data-player-id="${playerId}"]`);
-      const player = players[playerId];
-
-      button.addEventListener('click', () => {
-        if (player.isMuted()) {
-          player.unMute();
-          fadeVolumeIn(player);
-          button.textContent = '🔊 Mo tiếng';
-        } else {
-          player.mute();
-          button.textContent = '🔇 Tắt tiếng';
-        }
-      });
-    }
-
-    function fadeVolumeIn(player) {
-      let volume = 0;
-      player.setVolume(volume);
-      const interval = setInterval(() => {
-        if (volume < 100) {
-          volume += 10;
-          player.setVolume(volume);
-        } else {
-          clearInterval(interval);
-        }
-      }, 200);
-    }
+    // Cập nhật slider tốc độ
+    const fadeSlider = document.getElementById('fade-speed');
+    const fadeVal = document.getElementById('fade-val');
+    fadeSlider.addEventListener('input', () => {
+      fadeSpeed = parseInt(fadeSlider.value);
+      fadeVal.textContent = `${fadeSpeed} ms`;
+    });
 
     // Tải API YouTube
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
-  </script>
-      
-<script>
-  const players = {};
-  let fadeSpeed = 200;
 
-  const fadeSlider = document.getElementById('fade-speed');
-  const fadeVal = document.getElementById('fade-val');
-  fadeSlider.addEventListener('input', () => {
-    fadeSpeed = parseInt(fadeSlider.value);
-    fadeVal.textContent = `${fadeSpeed} ms`;
-  });
+    // Sau khi API đã sẵn sàng
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('.video-block').forEach(block => {
+        const playerId = block.dataset.playerId;
+        const videoId = block.dataset.videoId;
+        const iframe = block.querySelector('iframe');
+        const button = block.querySelector('.mute-toggle');
 
-  const tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  document.body.appendChild(tag);
+        // Gán src cho iframe
+        iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
 
-  function onYouTubeIframeAPIReady() {
-    document.querySelectorAll('.video-block').forEach(block => {
-      const playerId = block.dataset.playerId;
-      const videoId = block.dataset.videoId;
-      const iframe = block.querySelector('iframe');
-      const button = block.querySelector('.mute-toggle');
+        // Khởi tạo player
+        players[playerId] = new YT.Player(playerId, {
+          events: {
+            onReady: () => setupPlayerShared(playerId, iframe, button)
+          }
+        });
+      });
+    }
 
-      iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+    function setupPlayerShared(playerId, iframe, button) {
+      const player = players[playerId];
+      const key = `muteState_${playerId}`;
+      const saved = localStorage.getItem(key);
 
-      players[playerId] = new YT.Player(playerId, {
-        events: {
-          onReady: () => setupPlayer(playerId, iframe, button)
+      if (saved === 'unmuted') {
+        player.unMute();
+        fadeIn(player);
+        iframe.classList.remove('blurred');
+        button.textContent = '🔊 Đang phát tiếng';
+      } else {
+        player.mute();
+        iframe.classList.add('blurred');
+        button.textContent = '🔇 Tắt tiếng';
+      }
+      button.addEventListener('click', () => {
+        if (player.isMuted()) {
+          player.unMute();
+          fadeIn(player);
+          iframe.classList.remove('blurred');
+          button.textContent = '🔊 Đang phát tiếng';
+          localStorage.setItem(key, 'unmuted');
+        } else {
+          fadeOut(player, () => {
+            player.mute();
+            iframe.classList.add('blurred');
+            button.textContent = '🔇 Tắt tiếng';
+            localStorage.setItem(key, 'muted');
+          });
         }
       });
-    });
-  }
+    }
 
-  function setupPlayer(playerId, iframe, button) {
-    const player = players[playerId];
-    const key = `muteState_${playerId}`;
-    let isMuted = localStorage.getItem(key)!== 'unmuted';
-    
+    function fadeIn(player) {
+      let vol = 0;
+      player.setVolume(vol);
+      const fade = setInterval(() => {
+        if (vol < 100) {
+          vol += 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+        }
+      }, fadeSpeed);
+    }
+
+    function fadeOut(player, callback) {
+      let vol = player.getVolume();
+      const fade = setInterval(() => {
+        if (vol > 0) {
+          vol -= 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+          callback();
+        }
+      }, fadeSpeed);
+    }
   </script>
+  
+      
+  
     
    
     
@@ -232,23 +256,7 @@
   fetchNews();
 </script>
     
-    
-    
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/V-TQ5N9ONdU" allowfullscreen>
-      </iframe>
-    </div>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/V-TQ5N9ONdU" allowfullscreen>
-      </iframe>
-    </div>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/V-TQ5N9ONdU" allowfullscreen>
-      </iframe>
-    </div>
-    </div>
-    </section>
-    <div class="more-videos">
+    class="more-videos">
       <h2>📺 XEM THÊM VIDEO MỚI</h2>
         <h3>
           <ul>
