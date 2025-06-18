@@ -3,7 +3,56 @@ body {
   background-size: 100%;
   background-attachment: fixed;
   
-{
+  {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .video-block {
+      margin-bottom: 50px;
+    }
+
+  !  iframe {
+      width: 560px;
+      height: 315px;
+      border: none;
+      transition: filter 0.4s ease;
+    }
+
+    iframe.blurred {
+      filter: blur(3px) grayscale(60%);
+    }
+
+   button.mute-toggle {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: yellow;
+      color: red; font-weight: bold;
+  cursor: pointer;
+    }
+
+    button.mute-toggle:hover {
+      background-color: red;
+      color: yellow;
+      font-weight: bold;
+  cursor: pointer;
+    }
+
+    .fade-speed {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+    input[type="range"] {
+      width: 200px;
+      vertical-align: middle;
+    }
+{!
   background: #111;
   color: white;
   text-align: center;
