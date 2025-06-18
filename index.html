@@ -11,43 +11,141 @@
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Weather Widget: Top of Page -->
-<div id="weather-widget" style="background:#fdf6e3; padding:10px; text-align:center; font-family:sans-serif; position:fixed; top:0; left:0; right:0; z-index:9999; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
-  <span id="weather-info">Đang tải thông tin thời tiết...</span>
-</div>
 
-<script>
-  async function getWeather(lat, lon) {
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-    const data = await res.json();
-    const weather = data.current_weather;
-    document.getElementById("weather-info").innerText =
-      `Thời tiết tại vị trí của bạn: ${weather.temperature}°C, ${weather.weathercode === 0 ? 'Trời quang' : 'Trạng thái khác'}`;
-  }
+    !ĐỌC NỘI DUNG TRANG
+  <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <button onclick="toggleRead()">📖 <span id="button-text">ĐỌC NỘI DUNG TRANG</span></button>
+    <button id="ttsBtn" onclick="toggleTTS()">🔊 PHÁT GIỌNG ĐỌC</button>
+    <select id="voiceSelect">
+      <option value="">Chọn giọng đọc</option>
+    </select>
+  </div>
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => getWeather(position.coords.latitude, position.coords.longitude),
-      () => document.getElementById("weather-info").innerText = "Không thể lấy vị trí để dự báo thời tiết."
-    );
-  } else {
-    document.getElementById("weather-info").innerText = "Trình duyệt không hỗ trợ định vị.";
-  }
-</script>
-    
-    <button onclick="readArticle()"><br> ĐỌC NỘI DUNG TRANG</button>
-<div id="output"></div>
+  <div id="output"></div>
 
-<script>
-  function readArticle() {
-    // Đây là một ví dụ cơ bản: lấy tất cả đoạn <p>
-    const paragraphs = Array.from(document.querySelectorAll("p"));
-    const text = paragraphs.map(p => p.innerText).join("\n\n");
+  <script>
+    let isLoaded = false;
+    let isSpeaking = false;
+    let utterance;
+    let sentenceQueue = [];
+    let currentIdx = 0;
+    let voices = [];
 
-    // Hiển thị ra div (hoặc xử lý tiếp)
-    document.getElementById("output").innerText = text;
-  }
-</script>
+    function toggleRead() {
+      const output = document.getElementById("output");
+      const btnText = document.getElementById("button-text");
+
+      if (!isLoaded) {
+        const elements = Array.from(document.querySelectorAll("p, h1, h2, h3, li, blockquote"));
+        const text = elements.map(el => el.innerText).join("\n");
+        const sentences = text.split(/(?<=[.?!])\s+/); // chia câu
+        output.innerHTML = sentences.map((s, i) => `<span id="sent-${i}">${s}</span>`).join(" ");
+        sentenceQueue = sentences;
+        isLoaded = true;
+      }
+
+      if (output.classList.contains("show")) {
+        output.classList.remove("show");
+        btnText.innerText = "ĐỌC NỘI DUNG TRANG";
+        stopTTS();
+      } else {
+        output.classList.add("show");
+        btnText.innerText = "ẨN NỘI DUNG TRANG";
+      }
+    }
+
+    function toggleTTS() {
+      if (!isSpeaking) {
+        startReading();
+      } else {
+        stopTTS();
+      }
+    }
+
+    function startReading() {
+      isSpeaking = true;
+      currentIdx = 0;
+      document.getElementById("ttsBtn").innerText = "⏹️ DỪNG GIỌNG ĐỌC";
+      readNextSentence();
+    }
+
+    function readNextSentence() {
+      if (currentIdx >= sentenceQueue.length) {
+        stopTTS();
+        return;
+      }
+
+      highlightSentence(currentIdx);
+
+      utterance = new SpeechSynthesisUtterance(sentenceQueue[currentIdx]);
+      utterance.lang = "vi-VN";
+
+      // Gán giọng nếu chọn
+      const voiceSelect = document.getElementById("voiceSelect");
+      const selectedVoiceURI = voiceSelect.value;
+      if (selectedVoiceURI) {
+        const found = voices.find(v => v.voiceURI === selectedVoiceURI);
+        if (found) utterance.voice = found;
+      }
+
+      utterance.onend = () => {
+        unhighlightSentence(currentIdx);
+        currentIdx++;
+        if (isSpeaking) readNextSentence();
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function stopTTS() {
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      document.getElementById("ttsBtn").innerText = "🔊 PHÁT GIỌNG ĐỌC";
+      unhighlightSentence(currentIdx);
+    }
+
+    function highlightSentence(idx) {
+      const el = document.getElementById(`sent-${idx}`);
+      if (el) el.classList.add("highlight");
+    }
+
+    function unhighlightSentence(idx) {
+      const el = document.getElementById(`sent-${idx}`);
+      if (el) el.classList.remove("highlight");
+    }
+
+    function autoSetTheme() {
+      const hour = new Date().getHours();
+      const body = document.body;
+      if (hour >= 18 || hour < 6) {
+        body.classList.add("dark");
+        body.classList.remove("light");
+      } else {
+        body.classList.add("light");
+        body.classList.remove("dark");
+      }
+    }
+
+    // Lấy danh sách giọng nói
+    function loadVoices() {
+      voices = speechSynthesis.getVoices();
+      const voiceSelect = document.getElementById("voiceSelect");
+      voiceSelect.innerHTML = `<option value="">Chọn giọng đọc</option>`;
+      voices
+        .filter(v => v.lang.startsWith("vi") || v.name.toLowerCase().includes("vietnam"))
+        .forEach(v => {
+          const opt = document.createElement("option");
+          opt.value = v.voiceURI;
+          opt.textContent = `${v.name} (${v.lang})`;
+          voiceSelect.appendChild(opt);
+        });
+    }
+
+    speechSynthesis.onvoiceschanged = loadVoices;
+    autoSetTheme();
+  </script>
+
+
     
 <button onclick="speakArticle()">NGHE NỘI DUNG TRANG</button>
 
