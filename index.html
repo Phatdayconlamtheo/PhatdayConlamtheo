@@ -63,11 +63,59 @@
   }
 </script>
 
-    <audio controls autoplay=1 loop=1>
+    !<audio controls autoplay=1 loop=1>
       <source src="nhac-nen.mp3" type="audio/mpeg" />
       Trình duyệt không hỗ trợ audio.
     </audio>
-    
+
+    <div class="player">
+    <h2>🎵 Nhạc Thiền Phật Giáo</h2>
+    <select class="track-select" id="trackList" onchange="changeTrack()">
+      <option value="https://example.com/nhac/nhac-nen-1.mp3">1. Gió Thiền</option>
+      <option value="https://example.com/nhac/nhac-nen-2.mp3">2. Chuông Tĩnh Lặng</option>
+      <option value="https://example.com/nhac/nhac-nen-3.mp3">3. Sen Nở Trong Tâm</option>
+      <option value="https://example.com/nhac/nhac-nen-4.mp3">4. Mây Trắng Vô Ưu</option>
+      <option value="https://example.com/nhac/nhac-nen-5.mp3">5. Thiền Trong Gió</option>
+      <option value="https://example.com/nhac/nhac-nen-6.mp3">6. Tịnh Tâm Ban Sớm</option>
+      <option value="https://example.com/nhac/nhac-nen-7.mp3">7. Chuông Xa Vọng</option>
+      <option value="https://example.com/nhac/nhac-nen-8.mp3">8. Suối Nguồn Hơi Thở</option>
+      <option value="https://example.com/nhac/nhac-nen-9.mp3">9. Đêm Tịch Lặng</option>
+      <option value="https://example.com/nhac/nhac-nen-10.mp3">10. Hương Trầm Nhẹ Bay</option>
+    </select>
+
+    <audio id="audioPlayer" controls autoplay loop>
+      Trình duyệt của bạn không hỗ trợ audio.
+    </audio>
+  
+  </div>
+  <script>
+    const player = document.getElementById("audioPlayer");
+    const trackList = document.getElementById("trackList");
+
+    // Tự động set bài đầu tiên
+    player.src = trackList.value;
+    player.play();
+
+    // Thay đổi bài khi chọn
+    function changeTrack() {
+      player.src = trackList.value;
+      player.play();
+    }
+
+    // Tự động phát bài kế tiếp (tuần hoàn)
+    trackList.addEventListener('change', () => {
+      player.src = trackList.value;
+      player.play();
+    });
+
+    player.addEventListener("ended", function () {
+      let nextIndex = (trackList.selectedIndex + 1) % trackList.length;
+      trackList.selectedIndex = nextIndex;
+      player.src = trackList.value;
+      player.play();
+    });
+  </script>
+
     <nav
     <div class="hero">
       <h1><strong>Phật dạy<br> Con làm theo</strong></h1>
