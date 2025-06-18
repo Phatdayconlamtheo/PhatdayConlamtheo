@@ -146,21 +146,6 @@
   </script>
 
 
-    
-<button onclick="speakArticle()">NGHE NỘI DUNG TRANG</button>
-
-<script>
-  function speakArticle() {
-    const text = Array.from(document.querySelectorAll("p"))
-      .map(p => p.innerText)
-      .join(". ");
-
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = 'vi-VN'; // Tiếng Việt
-    window.speechSynthesis.speak(speech);
-  }
-</script>
-
     <audio controls autoplay=1 loop=1>
       <source src="nhac-nen.mp3" type="audio/mpeg" />
       Trình duyệt không hỗ trợ audio.
