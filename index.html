@@ -72,7 +72,7 @@
         left: 0;
         right: 0;
         background: #222;
-        color: #fff;
+        <H2> color: yellow</H2>;
         padding: 10px;
         font-family: sans-serif;
         overflow: hidden;
@@ -522,14 +522,46 @@
         <h3>🌐 YouTube: <a href="https://www.youtube.com/@phatdayconlamtheo" target="_blank"><strong>Phật dạy Con làm theo</strong></a>
         </h3>
   </section>
+  
+  <!-- 🌤️ Các widget chính -->
+  <div id="widgets">
+    <div id="weather-widget"></div>
+    <div id="clock-widget"></div>
+    <div id="news-ticker"></div>
+  </div>
+
+  <!-- ⚙️ Nút mở setting -->
+  <button id="toggle-settings">⚙️</button>
+
+  <!-- ⚙️ Panel Cài đặt -->
+  <div id="settings-panel" class="hidden">
+    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label><br/>
+    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label><br/>
+    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label><br/>
+    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label><br/>
+    <div>
+      <label for="dark-mode-select">🌗 Giao diện:</label>
+      <select id="dark-mode-select">
+        <option value="auto">Tự động</option>
+        <option value="dark">Tối</option>
+        <option value="light">Sáng</option>
+      </select>
+    </div>
+  </div>
   <hr>
   <footer>
     <h3>
       <p><strong>© 2025 Phật dạy Con làm theo – Tâm lành gieo hạt, lời Phật thắp sáng</strong></p>
     </h3>
     </footer>
-    <script src="/widgets/weather-widget.js"></script>
-<script src="/widgets/news-ticker.js"></script>
+    
+    <!-- 📜 Scripts -->
+  <script src="weather-widget.js"></script>
+  <script src="news-ticker.js"></script>
+  <script src="clock-widget.js"></script>
+  <script src="background-music.js"></script>
+  <script src="settings-panel.js"></script>
+  <script src="buddha-quotes.js"></script>
 
   </body>
 </html>
