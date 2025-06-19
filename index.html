@@ -15,10 +15,10 @@
     
 <div id="video-container">
   <video id="my-video" autoplay muted loop>
-    <source src="your-video.mp4" type="video/mp4">
+    <source src="your-video" type="video/mp4">
     Trình duyệt của bạn không hỗ trợ video.
   </video>
-  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
+  <audio id="bg-music" src="background" autoplay loop></audio>
 </div>
 
 <!-- WIDGETS -->
@@ -296,13 +296,8 @@
       }, fadeSpeed);
     }
   </script>
-  
-      
     
-
-
-    
-   <h2>class="more-videos"></h2>
+  <h2>class="more-videos"></h2>
       <h2>📺 XEM THÊM VIDEO MỚI</h2>
         <h3>
           <ul>
@@ -409,47 +404,7 @@
       <p><strong>© 2025 Phật dạy Con làm theo – Tâm lành gieo hạt, lời Phật thắp sáng</strong></p>
     </h3>
     </footer>
-    <script src="/widgets/weather-widget.js"></script>
-    <script src="/widgets/news-ticker.js"></script>
     
-    !NÂNG CẤP THỜI TIẾT VÀ TIN TỨC
-    (function () {
-  const quotes = [
-    "Tâm bình thế giới bình.",
-    "Giữ tâm như nước lặng, soi rõ muôn điều.",
-    "Thấy lỗi mình, đừng thấy lỗi người.",
-    "Người tu là người buông bỏ, không phải người bỏ cuộc.",
-    "Chánh niệm là chìa khóa giải thoát.",
-    "Không có con đường dẫn đến hạnh phúc. Hạnh phúc chính là con đường.",
-    "Buông bỏ không phải là yếu đuối, mà là dũng khí.",
-    "Người biết đủ là người giàu có nhất.",
-    "Một niệm thiện có thể hóa giải nghìn niệm ác."
-  ];
-
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-  const box = document.createElement("div");
-  box.innerText = `📿 ${quote}`;
-  box.style.position = "absolute";
-  box.style.bottom = "50px";
-  box.style.left = "10px";
-  box.style.background = "rgba(255,255,255,0.85)";
-  box.style.color = "#222";
-  box.style.padding = "8px 12px";
-  box.style.borderRadius = "10px";
-  box.style.fontSize = "14px";
-  box.style.maxWidth = "80%";
-  box.style.zIndex = 9;
-  box.style.pointerEvents = "none";
-  box.style.fontStyle = "italic";
-
-  document.body.appendChild(box);
-
-  if (document.body.classList.contains("dark-mode")) {
-    box.style.background = "rgba(0,0,0,0.7)";
-    box.style.color = "#eee";
-  }
-})();
-
+  
   </body>
 </html>
