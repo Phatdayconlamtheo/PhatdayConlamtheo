@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trang Tĩnh Tâm & Tin Tức</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body style='background: transparent;'>
+
+<input type="color" id="bgColorPicker" value="#000000" style="position:fixed;top:10px;right:10px;z-index:10000;">
+<script>
+  const picker = document.getElementById('bgColorPicker');
+  const container = document.getElementById('overlay-container');
+  picker.addEventListener('input', () => {
+    container.style.backgroundColor = picker.value + '80'; // 50% opacity
+  });
+</script>
+
+<div id="overlay-container" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 9999;
+  pointer-events: auto;
+  background-color: transparent;
+">
+
+
+  <!-- 🎬 Video nền -->
+  <div id="video-container">
+    <video id="my-video" autoplay loop muted>
+      <source src="your-video.mp4" type="video/mp4" />
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+    <audio id="bg-music" src="background.mp3" loop></audio>
+  </div>
+
+  <!-- 🌤️ Các widget chính -->
+  <div id="widgets">
+    <div id="weather-widget"></div>
+    <div id="clock-widget"></div>
+    <div id="news-ticker"></div>
+  </div>
+
+  <!-- ⚙️ Nút mở setting -->
+  <button id="toggle-settings">⚙️</button>
+
+  <!-- ⚙️ Panel Cài đặt -->
+  <div id="settings-panel" class="hidden">
+    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label><br/>
+    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label><br/>
+    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label><br/>
+    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label><br/>
+    <div>
+      <label for="dark-mode-select">🌗 Giao diện:</label>
+      <select id="dark-mode-select">
+        <option value="auto">Tự động</option>
+        <option value="dark">Tối</option>
+        <option value="light">Sáng</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 📜 Scripts -->
+  <script src="weather-widget.js"></script>
+  <script src="news-ticker.js"></script>
+  <script src="clock-widget.js"></script>
+  <script src="background-music.js"></script>
+  <script src="settings-panel.js"></script>
+  <script src="buddha-quotes.js"></script>
+
+</div>
+</body>
+</html>
