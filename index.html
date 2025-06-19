@@ -14,7 +14,99 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-  
+  <!-- THỜI TIẾT (TOP) -->
+    <div
+      id="weather-widget"
+      style="
+        background: transparent;
+
+        color: #860404;
+        padding: 10px;
+        text-align: center;
+        font-family: sans-serif;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      "
+    >
+      <span id="weather-info">Đang tải thông tin thời tiết...</span>
+    </div>
+
+    <script>
+      async function getWeather(lat, lon) {
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+        );
+        const data = await res.json();
+        const weather = data.current_weather;
+        const status =
+          weather.weathercode === 0 ? "Trời quang" : "Trạng thái khác";
+        document.getElementById(
+          "weather-info"
+        ).innerText = `Thời tiết hiện tại: ${weather.temperature}°C - ${status}`;
+      }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) =>
+            getWeather(position.coords.latitude, position.coords.longitude),
+          () =>
+            (document.getElementById("weather-info").innerText =
+              "Không thể lấy vị trí dự báo thời tiết.")
+        );
+      } else {
+        document.getElementById("weather-info").innerText =
+          "Trình duyệt không hỗ trợ định vị.";
+      }
+    </script>
+
+    <!-- TIN TỨC (BOTTOM) -->
+    <div
+      id="news-ticker"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #222;
+        color: #fff;
+        padding: 10px;
+        font-family: sans-serif;
+        overflow: hidden;
+        z-index: 9999;
+      "
+    >
+      <marquee behavior="scroll" direction="left" id="news-content"
+        >Đang tải tin tức...</marquee
+      >
+    </div>
+
+    <script>
+      async function fetchNews() {
+        const rssUrl = "https://vnexpress.net/rss/tin-moi-nhat.rss";
+        const response = await fetch(
+          "https://api.rss2json.com/v1/api.json?rss_url=" +
+            encodeURIComponent(rssUrl)
+        );
+        const data = await response.json();
+        if (data.status === "ok") {
+          const titles = data.items
+            .slice(0, 5)
+            .map((item) => item.title)
+            .join(" ❖ ");
+          document.getElementById("news-content").innerText = titles;
+        } else {
+          document.getElementById("news-content").innerText =
+            "Không thể tải tin tức.";
+        }
+      }
+
+      fetchNews();
+    </script>
+
     <div style="display: flex; gap: 10px; flex-wrap: wrap">
       <button onclick="toggleRead()">
         📖 <span id="button-text">ĐỌC NỘI DUNG TRANG</span>
