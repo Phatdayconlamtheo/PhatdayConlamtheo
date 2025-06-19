@@ -57,3 +57,36 @@ window.addEventListener("DOMContentLoaded", () => {
   darkSelect.value = saved;
   applyDarkModeSetting(saved);
 });
+<div>
+  <label for="dark-mode-select">🌗 Giao diện:</label>
+  <select id="dark-mode-select">
+    <option value="auto">Tự động</option>
+    <option value="dark">Tối</option>
+    <option value="light">Sáng</option>
+  </select>
+</div>;
+
+const darkSelect = document.getElementById("dark-mode-select");
+
+function applyDarkModeSetting(mode) {
+  if (mode === "dark") document.body.classList.add("dark-mode");
+  else if (mode === "light") document.body.classList.remove("dark-mode");
+  else {
+    const hour = new Date().getHours();
+    const isNight = hour >= 18 || hour < 6;
+    document.body.classList.toggle("dark-mode", isNight);
+  }
+}
+
+darkSelect.addEventListener("change", () => {
+  const mode = darkSelect.value;
+  localStorage.setItem("dark-mode-setting", mode);
+  applyDarkModeSetting(mode);
+});
+
+// Load lại cài đặt khi mở web
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("dark-mode-setting") || "auto";
+  darkSelect.value = saved;
+  applyDarkModeSetting(saved);
+});

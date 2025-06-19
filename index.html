@@ -12,37 +12,45 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Weather Widget: Top of Page -->
-<div id="weather-widget" style="background:#fdf6e3; padding:10px; text-align:center; font-family:sans-serif; position:fixed; top:0; left:0; right:0; z-index:9999; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
-  <span id="weather-info">Đang tải thông tin thời tiết...</span>
+    
+<div id="video-container">
+  <video id="my-video" autoplay muted loop>
+    <source src="your-video.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+  </video>
+  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
 </div>
 
-<script>
-  async function getWeather(lat, lon) {
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-    const data = await res.json();
-    const weather = data.current_weather;
-    document.getElementById("weather-info").innerText =
-      `Thời tiết tại vị trí của bạn: ${weather.temperature}°C, ${weather.weathercode === 0 ? 'Trời quang' : 'Trạng thái khác'}`;
-  }
+<!-- WIDGETS -->
+<div id="widgets">
+  <div id="weather-widget"></div>
+  <div id="news-ticker"></div>
+  <div id="clock-widget"></div>
+  <button id="toggle-settings">⚙️</button>
+  <div id="settings-panel" class="hidden">
+    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label>
+    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label>
+    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label>
+    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label>
+    <label><input type="checkbox" id="toggle-dark"> Dark mode tự động</label>
+  </div>
+</div>
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => getWeather(position.coords.latitude, position.coords.longitude),
-      () => document.getElementById("weather-info").innerText = "Không thể lấy vị trí để dự báo thời tiết."
-    );
-  } else {
-    document.getElementById("weather-info").innerText = "Trình duyệt không hỗ trợ định vị.";
-  }
-</script>
+<script src="weather-widget.js"></script>
+<script src="news-ticker.js"></script>
+<script src="clock-widget.js"></script>
+<script src="background-music.js"></script>
+<script src="settings-panel.js"></script>
+
+
     
     
-         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-    <button onclick="toggleRead()">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <button onclick="toggleRead()">
       <span id="button-text"><br>📖 ĐỌC NỘI DUNG TRANG</span>
       <span id="arrow-icon" class="arrow">⬇️</span>
     </button>
-    <button id="ttsBtn" onclick="toggleTTS()">🔊 NGHE NOI DING TRANG</button>
+    <button id="ttsBtn" onclick="toggleTTS()">🔊 NGHE NỘI DUNG TRANG</button>
   </div>
 
   <div id="output"></div>
@@ -118,6 +126,7 @@
 
     autoSetTheme();
   </script>
+
     <nav
     <div class="hero">
       <h1><strong>Phật dạy<br> Con làm theo</strong></h1>
@@ -289,26 +298,9 @@
   </script>
   
       
-    <!-- News Ticker: Bottom of Page -->
-<div id="news-ticker" style="position:fixed; bottom:0; left:0; right:0; background:#222; color:#fff; padding:10px; font-family:sans-serif; overflow:hidden; z-index:9999;">
-  <marquee behavior="scroll" direction="left" id="news-content">Đang tải tin tức...</marquee>
-</div>
+    
 
-<script>
-  async function fetchNews() {
-    const rssUrl = "https://vnexpress.net/rss/tin-moi-nhat.rss"; // hoặc link RSS khác
-    const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl));
-    const data = await response.json();
-    if (data.status === "ok") {
-      const titles = data.items.slice(0, 5).map(item => item.title).join(" ❖ ");
-      document.getElementById("news-content").innerText = titles;
-    } else {
-      document.getElementById("news-content").innerText = "Không thể tải tin tức.";
-    }
-  }
 
-  fetchNews();
-</script>
     
    <h2>class="more-videos"></h2>
       <h2>📺 XEM THÊM VIDEO MỚI</h2>
@@ -420,7 +412,7 @@
     <script src="/widgets/weather-widget.js"></script>
     <script src="/widgets/news-ticker.js"></script>
     
-    !NANG CẤP THỜI TIẾT VÀ TIN TỨC
+    !NÂNG CẤP THỜI TIẾT VÀ TIN TỨC
     (function () {
   const quotes = [
     "Tâm bình thế giới bình.",
