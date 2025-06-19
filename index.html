@@ -12,12 +12,37 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Weather Widget: Top of Page -->
+<div id="weather-widget" style="background:#fdf6e3; padding:10px; text-align:center; font-family:sans-serif; position:fixed; top:0; left:0; right:0; z-index:9999; box-shadow:0 2px 4px rgba(0,0,0,0.2);">
+  <span id="weather-info">Đang tải thông tin thời tiết...</span>
+</div>
+
+<script>
+  async function getWeather(lat, lon) {
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+    const data = await res.json();
+    const weather = data.current_weather;
+    document.getElementById("weather-info").innerText =
+      `Thời tiết tại vị trí của bạn: ${weather.temperature}°C, ${weather.weathercode === 0 ? 'Trời quang' : 'Trạng thái khác'}`;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => getWeather(position.coords.latitude, position.coords.longitude),
+      () => document.getElementById("weather-info").innerText = "Không thể lấy vị trí để dự báo thời tiết."
+    );
+  } else {
+    document.getElementById("weather-info").innerText = "Trình duyệt không hỗ trợ định vị.";
+  }
+</script>
+    
+    
          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
     <button onclick="toggleRead()">
-      <span id="button-text">📖 ĐỌC NỘI DUNG TRANG</span>
+      <span id="button-text"><br>📖 ĐỌC NỘI DUNG TRANG</span>
       <span id="arrow-icon" class="arrow">⬇️</span>
     </button>
-    <button id="ttsBtn" onclick="toggleTTS()">🔊 PHÁT GIỌNG ĐỌC</button>
+    <button id="ttsBtn" onclick="toggleTTS()">🔊 NGHE NOI DING TRANG</button>
   </div>
 
   <div id="output"></div>
@@ -117,33 +142,42 @@
         <a href="tai-mp3.html" title="Tải MP3">🎧
         </a>
     </div>
+      
     <section class="video-section">
       <h2>🎥 XEM VIDEO MỚI NHẤT</h2>
     <div class="video-row">
-    <div class="video-box">
-
-
+    <div 
+      
   <h2>🎼 Giao hưởng YouTube - Âm thanh cho tâm hồn</h2>
 
   <!-- 🎬 Danh sách video (bạn chỉ cần thêm data-video-id là được!) -->
+      
+      class="video-box">
+      
   <div class="video-block" data-player-id="yt1" data-video-id="NpVbP2aMKH4">
     <iframe id="yt1"></iframe>
     <br>
     <button class="mute-toggle">🔇 Tắt tiếng</button>
   </div>
 
+      class="video-box">
+      
   <div class="video-block" data-player-id="yt2" data-video-id="e3uG3NOH0BU">
     <iframe id="yt2"></iframe>
     <br>
     <button class="mute-toggle">🔇 Tắt tiếng</button>
   </div>
-
+      
+      class="video-box">
+      
   <div class="video-block" data-player-id="yt3" data-video-id="V-TQ5N9ONdU">
     <iframe id="yt3"></iframe>
     <br>
     <button class="mute-toggle">🔇 Tắt tiếng</button>
   </div>
   
+      class="video-box">
+      
   <div class="video-block" data-player-id="yt4" data-video-id="kz9Dcd5qszY">
     <iframe id="yt4"></iframe>
     <br>
@@ -276,7 +310,7 @@
   fetchNews();
 </script>
     
-    class="more-videos">
+   <h2>class="more-videos"></h2>
       <h2>📺 XEM THÊM VIDEO MỚI</h2>
         <h3>
           <ul>
