@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư viện Video</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .video-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột desktop */
+      }
+    }
+
+    @media (max-width: 767px) {
+      .video-grid {
+        grid-template-columns: 1fr; /* 1 cột mobile */
+      }
+    }
+
+    .video-wrapper {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+
+    .video-wrapper:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎥 Bộ sưu tập Video Tâm linh</h2>
+
+  <div class="video-grid">
+    <div class="video-wrapper">
+      <video src="video1.mp4" muted autoplay loop></video>
+    </div>
+    <div class="video-wrapper">
+      <video src="video2.mp4" muted autoplay loop></video>
+    </div>
+    <div class="video-wrapper">
+      <video src="video3.mp4" muted autoplay loop></video>
+    </div>
+    <div class="video-wrapper">
+      <video src="video4.mp4" muted autoplay loop></video>
+    </div>
+  </div>
+
+</body>
+</html>
