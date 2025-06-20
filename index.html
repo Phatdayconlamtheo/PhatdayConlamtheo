@@ -12,12 +12,53 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- 🎬 Video nền -->
+  <div id="video-container">
+    
+    <audio id="bg-music" src="background.mp3" loop></audio>
+  </div>
+
+  <!-- 🌤️ Các widget chính -->
+  <div id="widgets">
+    <div id="weather-widget"></div>
+    <div id="clock-widget"></div>
+    <div id="news-ticker"></div>
+  </div>
+
+  <!-- ⚙️ Nút mở setting -->
+  <button id="toggle-settings">⚙️</button>
+
+  <!-- ⚙️ Panel Cài đặt -->
+  <div id="settings-panel" class="hidden">
+    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label><br/>
+    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label><br/>
+    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label><br/>
+    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label><br/>
+    <div>
+      <label for="dark-mode-select">🌗 Giao diện:</label>
+      <select id="dark-mode-select">
+        <option value="auto">Tự động</option>
+        <option value="dark">Tối</option>
+        <option value="light">Sáng</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 📜 Scripts -->
+  <script src="weather-widget.js"></script>
+  <script src="news-ticker.js"></script>
+  <script src="clock-widget.js"></script>
+  <script src="background-music.js"></script>
+  <script src="settings-panel.js"></script>
+  <script src="buddha-quotes.js"></script>
+
+    
          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
     <button onclick="toggleRead()">
       <span id="button-text">📖 ĐỌC NỘI DUNG TRANG</span>
       <span id="arrow-icon" class="arrow">⬇️</span>
     </button>
-    <button id="ttsBtn" onclick="toggleTTS()">🔊 PHÁT GIỌNG ĐỌC</button>
+    <button id="ttsBtn" onclick="toggleTTS()">🔊 NGHE NOOI DUNG TRANG</button>
   </div>
 
   <div id="output"></div>
@@ -93,6 +134,8 @@
 
     autoSetTheme();
   </script>
+    
+    
     <nav
     <div class="hero">
       <h1><strong>Phật dạy<br> Con làm theo</strong></h1>
@@ -254,50 +297,10 @@
       }, fadeSpeed);
     }
   </script>
+      
+      
 
-  <!-- 🎬 Video nền -->
-  <div id="video-container">
-    <video id="my-video" autoplay loop muted>
-      <source src="your-video.mp4" type="video/mp4" />
-      Trình duyệt của bạn không hỗ trợ video.
-    </video>
-    <audio id="bg-music" src="background.mp3" loop></audio>
-  </div>
-
-  <!-- 🌤️ Các widget chính -->
-  <div id="widgets">
-    <div id="weather-widget"></div>
-    <div id="clock-widget"></div>
-    <div id="news-ticker"></div>
-  </div>
-
-  <!-- ⚙️ Nút mở setting -->
-  <button id="toggle-settings">⚙️</button>
-
-  <!-- ⚙️ Panel Cài đặt -->
-  <div id="settings-panel" class="hidden">
-    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label><br/>
-    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label><br/>
-    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label><br/>
-    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label><br/>
-    <div>
-      <label for="dark-mode-select">🌗 Giao diện:</label>
-      <select id="dark-mode-select">
-        <option value="auto">Tự động</option>
-        <option value="dark">Tối</option>
-        <option value="light">Sáng</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- 📜 Scripts -->
-  <script src="weather-widget.js"></script>
-  <script src="news-ticker.js"></script>
-  <script src="clock-widget.js"></script>
-  <script src="background-music.js"></script>
-  <script src="settings-panel.js"></script>
-  <script src="buddha-quotes.js"></script>
-
+  
 
     
     class="more-videos">
