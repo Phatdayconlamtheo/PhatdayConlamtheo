@@ -1,0 +1,81 @@
+body {
+  background-image: url("images/phat-bg.jpg");
+  background-size: 100%,auto;
+  background-attachment: fixed;
+  
+  {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .hero {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 10px 6px;
+  font-size: 14px;
+  
+  font-weight: bold;
+  color: red;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.9em;
+  margin: auto;
+  font-weight: bold;
+  color: red;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+  margin: auto;
+  font-weight: bold;
+  color: red;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1.6em;
+  margin: auto;
+  font-weight: bold;
+  color: fuchsia;
+}
+
+h4 {
+  text-align: center;
+  font-size: 1.3em;
+  margin: auto;
+  font-weight: bold;
+  color: crimson;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 10px 0 10px;
+  font-style: italic;
+  color: deeppink;
+}
+.circle-menu {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 0 0;
+}
+/* Circle menu styles */
+.circle-menu a {
+  !position: fixed;
+  width: 100px;
+  height: 100px;
+  line-height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff8dc;
+  text-decoration: red;
+  font-size: 90px;
+  font-weight: bold;
+  transition: background 0.3s;
+  border: 2px solid #ffd700;
+}
