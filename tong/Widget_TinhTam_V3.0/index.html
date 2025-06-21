@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trang Tĩnh Tâm & Tin Tức</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="video-container">
+    <video id="my-video" autoplay loop muted>
+      <source src="your-video.mp4" type="video/mp4" />
+      Trình duyệt của bạn không hỗ trợ video.
+    </video>
+    <audio id="bg-music" src="background.mp3" loop></audio>
+  </div>
+  <div id="widgets">
+    <div id="weather-widget"></div>
+    <div id="clock-widget"></div>
+    <div id="news-ticker"></div>
+  </div>
+  <button id="toggle-settings">⚙️</button>
+  <div id="settings-panel" class="hidden">
+    <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label><br/>
+    <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label><br/>
+    <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label><br/>
+    <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label><br/>
+    <div>
+      <label for="dark-mode-select">🌗 Giao diện:</label>
+      <select id="dark-mode-select">
+        <option value="auto">Tự động</option>
+        <option value="dark">Tối</option>
+        <option value="light">Sáng</option>
+      </select>
+    </div>
+  </div>
+  <script src="weather-widget.js"></script>
+  <script src="news-ticker.js"></script>
+  <script src="clock-widget.js"></script>
+  <script src="background-music.js"></script>
+  <script src="settings-panel.js"></script>
+  <script src="buddha-quotes.js"></script>
+</body>
+</html>
