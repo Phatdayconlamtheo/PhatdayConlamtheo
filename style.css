@@ -58,7 +58,7 @@ h4 {
   font-style: italic;
   color: deeppink;
 }
-.circle-menu {
+!.circle-menu {
   position: relative;
   width: 80px;
   height: 80px;
