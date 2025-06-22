@@ -15,20 +15,32 @@ body {
   background: rgba(255, 255, 255, 0.15);
   padding: 10px 6px;
   font-size: 14px;
-  
+  top: 10px;
   font-weight: bold;
   color: red;
 }
 
 h1 {
+  background: transparent;
+  border: 5px solid rgb(218, 153, 14);    
+  border-radius: 10px;
+  top: 3px;
+  padding: 10px;
+  width: 100%;
+  margin: auto;
+  position: relative;
   text-align: center;
   font-size: 4.1em;
-  margin: auto;
   font-weight: bold;
   color: red;
 }
 
 h2 {
+  background: transparent;
+  border: 2px solid red;  
+  border-radius: 10px;
+  top: 24px;
+  padding: 10px;
   text-align: center;
   font-size: 2em;
   margin: auto;
@@ -37,6 +49,12 @@ h2 {
 }
 
 h3 {
+  background: transparent;
+  border: 2px solid blue;
+  border-radius: 10px;
+  top: 12px;
+  padding: 10px;
+  width: 100%;  
   text-align: center;
   font-size: 1.6em;
   margin: auto;
@@ -45,7 +63,12 @@ h3 {
 }
 
 h4 {
-  background: yellow;
+  background: transparent;
+  border: 2px solid green;    
+  border-radius: 10px;
+  top: 18px;
+  padding: 10px;
+  width: 100%;
   text-align: center;
   font-size: 1.3em;
   margin: auto;
@@ -53,6 +76,7 @@ h4 {
   color: red;
 }
 h5 { 
+  background: transparent;
   text-align: center;
   font-size: 1.2em;
   margin: auto;
@@ -75,6 +99,7 @@ h5 {
   border-radius: 10%;
   background: red;
   color: yellow;
+  font: bold;
   text-decoration: red;
   font-weight: bold;
   text-align: center;
@@ -84,10 +109,12 @@ h5 {
 .circle-menu a:hover {
   background: yellow;
   color: red;
+  font: bold;
 }
 .circle-menu a:active {
   background: #ff8c00;
   color: white;
+  font: bold;
 }
 .circle-menu a:nth-child(1) {
   top: 0;
