@@ -1,7 +1,7 @@
 (function () {
   const box = document.createElement("div");
   box.style.position = "fixed";
-  box.style.bottom = "60px";
+  box.style.bottom = "120px";
   box.style.right = "10px";
   box.style.background = "rgba(255,255,255,0.95)";
   box.style.padding = "10px";

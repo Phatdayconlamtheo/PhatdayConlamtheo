@@ -17,8 +17,9 @@ button {
   cursor: pointer;
   padding: 10px 20px;
   font-size: 20px;
+  FONT WEIGHT: bold;
   margin-bottom: 10px;
-  background-color: yellow;
+  background-color: YELLOW;
   color: RED;
   border: none;
   border-radius: 5px;
@@ -29,7 +30,7 @@ button {
 }
 
 button:hover {
-  background-color: red;
+  background-color: brown;
   color: yellow;
 }
 

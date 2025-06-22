@@ -2,7 +2,11 @@
 
 #weather-widget {
   background: #fdf6e3;
-  padding: 10px;
+  border: 2px solid #93a1a1;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px;
   text-align: center;
   font-family: sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -10,9 +14,11 @@
 }
 
 #news-ticker {
-  background: #222;
-  color: #fff;
-  padding: 10px;
+  background: #696666;
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px;
   font-family: sans-serif;
   overflow: hidden;
   z-index: 9999;

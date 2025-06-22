@@ -7,7 +7,7 @@
     "Không làm điều ác, siêng làm việc lành, giữ tâm ý trong sạch – đó là lời chư Phật dạy.",
     "Thắng người khác là mạnh, thắng chính mình là vĩ đại.",
     "Chỉ có hiện tại là sự sống. Quá khứ đã qua, tương lai chưa tới.",
-    "Thà sống một ngày có chánh niệm, còn hơn sống trăm năm vô minh."
+    "Thà sống một ngày có chánh niệm, còn hơn sống trăm năm vô minh.",
   ];
   const today = new Date();
   const index = today.getDate() % quotes.length;
@@ -15,8 +15,8 @@
   const el = document.createElement("div");
   el.innerText = `📖 ${quote}`;
   el.style.position = "absolute";
-  el.style.bottom = "80px";
-  el.style.right = "10px";
+  el.style.bottom = "100px";
+  el.style.right = "50px";
   el.style.background = "rgba(255,255,255,0.9)";
   el.style.color = "#222";
   el.style.padding = "10px";
