@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/widgets/style.css">
+    <link rel="stylesheet" href="/DOC_TRANG/V5/DTV5.CSS">
     </head>
   
 <body>
@@ -41,7 +42,149 @@
 </script>
 
 <!-- NHÚNG ĐỌC TRANG  -->
-!<iframe src="DOC_TRANG/V5/DTV5.HTML" style="width:100%; height:100px; border:none;" loading="lazy"></iframe>
+ <!iframe src="DOC_TRANG/V5/DTV5.HTML" style="width:100%; height:100px; border:none;" loading="lazy"></!iframe>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      <button onclick="toggleRead()">
+        <span id="button-text">📖 ĐỌC NỘI DUNG TRANG</span>
+      </button>
+      <button id="ttsBtn" onclick="toggleTTS()">🔊 PHÁT NỘI DUNG TRANG</button>
+      <select id="voiceSelect">
+        <option value="">CHỌN GIỌNG ĐỌC</option>
+      </select>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+      let isLoaded = false;
+      let isSpeaking = false;
+      let utterance;
+      let sentenceQueue = [];
+      let currentIdx = 0;
+      let voices = [];
+
+      function toggleRead() {
+        const output = document.getElementById("output");
+        const btnText = document.getElementById("button-text");
+
+        if (!isLoaded) {
+          const elements = Array.from(
+            document.querySelectorAll("p, h1, h2, h3, li, blockquote")
+          );
+          const text = elements.map((el) => el.innerText).join("\n");
+          const sentences = text.split(/(?<=[.?!])\s+/); // chia câu
+          output.innerHTML = sentences
+            .map((s, i) => `<span id="sent-${i}">${s}</span>`)
+            .join(" ");
+          sentenceQueue = sentences;
+          isLoaded = true;
+        }
+
+        if (output.classList.contains("show")) {
+          output.classList.remove("show");
+          btnText.innerText = "ĐỌC NỘI DUNG TRANG";
+          stopTTS();
+        } else {
+          output.classList.add("show");
+          btnText.innerText = "ẨN NỘI DUNG TRANG";
+        }
+      }
+
+      function toggleTTS() {
+        if (!isSpeaking) {
+          startReading();
+        } else {
+          stopTTS();
+        }
+      }
+
+      function startReading() {
+        isSpeaking = true;
+        currentIdx = 0;
+        document.getElementById("ttsBtn").innerText = "⏹️ DỪNG ĐỌC NỘI DUNG";
+        readNextSentence();
+      }
+
+      function readNextSentence() {
+        if (currentIdx >= sentenceQueue.length) {
+          stopTTS();
+          return;
+        }
+
+        highlightSentence(currentIdx);
+
+        utterance = new SpeechSynthesisUtterance(sentenceQueue[currentIdx]);
+        utterance.lang = "vi-VN";
+
+        // Gán giọng nếu chọn
+        const voiceSelect = document.getElementById("voiceSelect");
+        const selectedVoiceURI = voiceSelect.value;
+        if (selectedVoiceURI) {
+          const found = voices.find((v) => v.voiceURI === selectedVoiceURI);
+          if (found) utterance.voice = found;
+        }
+
+        utterance.onend = () => {
+          unhighlightSentence(currentIdx);
+          currentIdx++;
+          if (isSpeaking) readNextSentence();
+        };
+
+        speechSynthesis.speak(utterance);
+      }
+
+      function stopTTS() {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        document.getElementById("ttsBtn").innerText = "🔊 ĐỌC NỘI DUNG TRANG";
+        unhighlightSentence(currentIdx);
+      }
+
+      function highlightSentence(idx) {
+        const el = document.getElementById(`sent-${idx}`);
+        if (el) el.classList.add("highlight");
+      }
+
+      function unhighlightSentence(idx) {
+        const el = document.getElementById(`sent-${idx}`);
+        if (el) el.classList.remove("highlight");
+      }
+
+      function autoSetTheme() {
+        const hour = new Date().getHours();
+        const body = document.body;
+        if (hour >= 18 || hour < 6) {
+          body.classList.add("dark");
+          body.classList.remove("light");
+        } else {
+          body.classList.add("light");
+          body.classList.remove("dark");
+        }
+      }
+
+      // Lấy danh sách giọng nói
+      function loadVoices() {
+        voices = speechSynthesis.getVoices();
+        const voiceSelect = document.getElementById("voiceSelect");
+        voiceSelect.innerHTML = `<option value="">CHỌN GIỌNG ĐỌC</option>`;
+        voices
+          .filter(
+            (v) =>
+              v.lang.startsWith("vi") ||
+              v.name.toLowerCase().includes("vietnam")
+          )
+          .forEach((v) => {
+            const opt = document.createElement("option");
+            opt.value = v.voiceURI;
+            opt.textContent = `${v.name} (${v.lang})`;
+            voiceSelect.appendChild(opt);
+          });
+      }
+
+      speechSynthesis.onvoiceschanged = loadVoices;
+      autoSetTheme();
+    </script>
 
 <!-- TIN TỨC (BOTTOM) -->
 <div id="news-ticker" style="position:fixed; bottom:0; left:0; right:0; background:#222; color:#fff; padding:10px; font-family:sans-serif; overflow:hidden; z-index:9999;">
