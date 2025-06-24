@@ -4,7 +4,7 @@
   weatherBox.id = "weather-widget";
   weatherBox.style.position = "fixed";
   weatherBox.style.top = "0";
-  weatherBox.style.left = "0";
+  weatherBox.style.left = "1500px";
   weatherBox.style.right = "0";
   document.body.appendChild(weatherBox);
 
