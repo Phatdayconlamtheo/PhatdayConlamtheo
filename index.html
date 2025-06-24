@@ -21,11 +21,13 @@
 
         <!-- NHÚNG ĐỌC TRANG  -->
 
-    <div style="display: flex; gap: 10px; flex-wrap: wrap">
-      <button onclick="toggleRead()">
-        📖<span id="button-text">ĐỌC NỘI DUNG TRANG</span>
-      </button>
-      <button id="ttsBtn" onclick="toggleTTS()">🔊NGHE NỘI DUNG TRANG</button>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <button onclick="toggleRead()">
+      <span id="button-text">📖 ĐỌC NỘI DUNG TRANG</span>
+      <span id="arrow-icon" class="arrow">⬇️</span>
+    </button>
+    
+    <button id="ttsBtn" onclick="toggleTTS()">🔊 NGHE NỘI DUNG TRANG</button>
       <select id="voiceSelect">
         <option value="">CHỌN GIỌNG ĐỌC</option>
       </select>
@@ -59,12 +61,19 @@
         }
 
         if (output.classList.contains("show")) {
-          output.classList.remove("show");
-          btnText.innerText = "ĐỌC NỘI DUNG TRANG";
-          stopTTS();
-        } else {
-          output.classList.add("show");
-          btnText.innerText = "ẨN NỘI DUNG TRANG";
+        output.classList.remove("show");
+        btnText.innerText = "📖 ĐỌC NỘI DUNG TRANG ⬇️";
+        arrow.classList.remove("rotated");
+        arrow.innerText = "⬇️";
+        
+        stopTTS(); // dừng giọng đọc nếu đang đọc
+      } else {
+        output.classList.add("show");
+
+        btnText.innerText = "🔽 ẨN NỘI DUNG TRANG ⬆️";
+        arrow.classList.add("rotated");
+        arrow.innerText = "⬆️";
+
         }
       }
 
@@ -114,8 +123,10 @@
       function stopTTS() {
         speechSynthesis.cancel();
         isSpeaking = false;
-        document.getElementById("ttsBtn").innerText = "🔊 ĐỌC NỘI DUNG TRANG";
+        document.getElementById("ttsBtn").innerText = "🔊 NGHE NỘI DUNG TRANG";
+
         unhighlightSentence(currentIdx);
+      
       }
 
       function highlightSentence(idx) {
@@ -146,9 +157,21 @@
             voiceSelect.appendChild(opt);
           });
       }
-
       speechSynthesis.onvoiceschanged = loadVoices;
-      autoSetTheme();
+        
+      function autoSetTheme() {
+      const hour = new Date().getHours();
+      const body = document.body;
+      if (hour >= 18 || hour < 6) {
+        body.classList.add("dark");
+        body.classList.remove("light");
+      } else {
+        body.classList.add("light");
+        body.classList.remove("dark");
+      }
+    }
+
+    autoSetTheme();
     </script>
 
 
