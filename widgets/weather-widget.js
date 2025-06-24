@@ -3,7 +3,7 @@
   const weatherBox = document.createElement("div");
   weatherBox.id = "weather-widget";
   weatherBox.style.position = "fixed";
-  weatherBox.style.top = "0";
+  weatherBox.style.top = "380px";
   weatherBox.style.left = "0";
   weatherBox.style.right = "0";
   document.body.appendChild(weatherBox);

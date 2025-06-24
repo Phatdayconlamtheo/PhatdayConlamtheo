@@ -1,22 +1,20 @@
 /* style.css - giao diện cho weather + news */
 
 #weather-widget {
-  background: #fdf6e3;
-  border: 2px solid #93a1a1;
-  color: red;
-  font-size: 14px;
+  background: transparent;
+  color: blue;
+  font: bold;
+  font-size: 24px;
   font-weight: bold;
-  padding: 4px;
   text-align: center;
   font-family: sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 9999;
 }
 
 #news-ticker {
   background: #696666;
   color: red;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: bold;
   padding: 4px;
   font-family: sans-serif;
