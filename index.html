@@ -224,12 +224,296 @@
   
     <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
 
-    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
-    
-    
+    <div class="video-block" data-player-id="yt" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
+      <!-- ⚙️ Điều chỉnh tốc độ fade -->
+  <div class="fade-speed">
+    ⏱️ Tốc độ fade âm lượng:
+    <input id="fade-speed" type="range" min="100" max="1000" value="200">
+    <span id="fade-val">200 ms</span>
+  </div>
 
+  <script>
+    const players = {};
+    let fadeSpeed = 200;
+
+    // Cập nhật slider tốc độ
+    const fadeSlider = document.getElementById('fade-speed');
+    const fadeVal = document.getElementById('fade-val');
+    fadeSlider.addEventListener('input', () => {
+      fadeSpeed = parseInt(fadeSlider.value);
+      fadeVal.textContent = `${fadeSpeed} ms`;
+    });
+
+    // Tải API YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    // Sau khi API đã sẵn sàng
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('.video-block').forEach(block => {
+        const playerId = block.dataset.playerId;
+        const videoId = block.dataset.videoId;
+        const iframe = block.querySelector('iframe');
+        const button = block.querySelector('.mute-toggle');
+
+        // Gán src cho iframe
+        iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+
+        // Khởi tạo player
+        players[playerId] = new YT.Player(playerId, {
+          events: {
+            onReady: () => setupPlayerShared(playerId, iframe, button)
+          }
+        });
+      });
+    }
+
+    function setupPlayerShared(playerId, iframe, button) {
+      const player = players[playerId];
+      const key = `muteState_${playerId}`;
+      const saved = localStorage.getItem(key);
+
+      if (saved === 'unmuted') {
+        player.unMute();
+        fadeIn(player);
+        iframe.classList.remove('blurred');
+        button.textContent = '🔊 Đang phát tiếng';
+      } else {
+        player.mute();
+        iframe.classList.add('blurred');
+        button.textContent = '🔇 Tắt tiếng';
+      }
+      button.addEventListener('click', () => {
+        if (player.isMuted()) {
+          player.unMute();
+          fadeIn(player);
+          iframe.classList.remove('blurred');
+          button.textContent = '🔊 Đang phát tiếng';
+          localStorage.setItem(key, 'unmuted');
+        } else {
+          fadeOut(player, () => {
+            player.mute();
+            iframe.classList.add('blurred');
+            button.textContent = '🔇 Tắt tiếng';
+            localStorage.setItem(key, 'muted');
+          });
+        }
+      });
+    }
+
+    function fadeIn(player) {
+      let vol = 0;
+      player.setVolume(vol);
+      const fade = setInterval(() => {
+        if (vol < 100) {
+          vol += 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+        }
+      }, fadeSpeed);
+    }
+
+    function fadeOut(player, callback) {
+      let vol = player.getVolume();
+      const fade = setInterval(() => {
+        if (vol > 0) {
+          vol -= 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+          callback();
+        }
+      }, fadeSpeed);
+    }
+  </script>
+    
+  <h2>🎼 Giao hưởng YouTube - Âm thanh cho tâm hồn</h2>
+
+  <!-- 🎬 Danh sách video (bạn chỉ cần thêm data-video-id là được!) -->
+  <div class="video-block" data-player-id="yt1" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt1"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <div class="video-block" data-player-id="yt2" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt2"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <div class="video-block" data-player-id="yt3" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt3"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+  
+  <div class="video-block" data-player-id="yt4" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt4"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <!-- ⚙️ Điều chỉnh tốc độ fade -->
+  <div class="fade-speed">
+    ⏱️ Tốc độ fade âm lượng:
+    <input id="fade-speed" type="range" min="100" max="1000" value="200">
+    <span id="fade-val">200 ms</span>
+  </div>
+
+  <script>
+    const players = {};
+    let fadeSpeed = 200;
+
+    // Cập nhật slider tốc độ
+    const fadeSlider = document.getElementById('fade-speed');
+    const fadeVal = document.getElementById('fade-val');
+    fadeSlider.addEventListener('input', () => {
+      fadeSpeed = parseInt(fadeSlider.value);
+      fadeVal.textContent = `${fadeSpeed} ms`;
+    });
+
+    // Tải API YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    // Sau khi API đã sẵn sàng
+    function onYouTubeIframeAPIReady() {
+      document.querySelectorAll('.video-block').forEach(block => {
+        const playerId = block.dataset.playerId;
+        const videoId = block.dataset.videoId;
+        const iframe = block.querySelector('iframe');
+        const button = block.querySelector('.mute-toggle');
+
+        // Gán src cho iframe
+        iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+
+        // Khởi tạo player
+        players[playerId] = new YT.Player(playerId, {
+          events: {
+            onReady: () => setupPlayerShared(playerId, iframe, button)
+          }
+        });
+      });
+    }
+
+    function setupPlayerShared(playerId, iframe, button) {
+      const player = players[playerId];
+      const key = `muteState_${playerId}`;
+      const saved = localStorage.getItem(key);
+
+      if (saved === 'unmuted') {
+        player.unMute();
+        fadeIn(player);
+        iframe.classList.remove('blurred');
+        button.textContent = '🔊 Đang phát tiếng';
+      } else {
+        player.mute();
+        iframe.classList.add('blurred');
+        button.textContent = '🔇 Tắt tiếng';
+      }
+      button.addEventListener('click', () => {
+        if (player.isMuted()) {
+          player.unMute();
+          fadeIn(player);
+          iframe.classList.remove('blurred');
+          button.textContent = '🔊 Đang phát tiếng';
+          localStorage.setItem(key, 'unmuted');
+        } else {
+          fadeOut(player, () => {
+            player.mute();
+            iframe.classList.add('blurred');
+            button.textContent = '🔇 Tắt tiếng';
+            localStorage.setItem(key, 'muted');
+          });
+        }
+      });
+    }
+
+    function fadeIn(player) {
+      let vol = 0;
+      player.setVolume(vol);
+      const fade = setInterval(() => {
+        if (vol < 100) {
+          vol += 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+        }
+      }, fadeSpeed);
+    }
+
+    function fadeOut(player, callback) {
+      let vol = player.getVolume();
+      const fade = setInterval(() => {
+        if (vol > 0) {
+          vol -= 10;
+          player.setVolume(vol);
+        } else {
+          clearInterval(fade);
+          callback();
+        }
+      }, fadeSpeed);
+    }
+  </script>
+  
       <h2>📿 Bộ Sưu Tập Video Phật Pháp</h2>
+
+  <h2>📿 BỘ SƯU TẬP VIDEO MỚI NHẤT TRÊN KÊNH PHẬT DẠY CON LÀM THEO</h2>
+
+  <div class="video-row">
+    
+    <div class="video-box">
+      
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+
+    <div class="video-block" data-player-id="yt1" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt1"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+    <div class="video-box">
+    
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+
+    <div class="video-block" data-player-id="yt2" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt2"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+    
+    <div class="video-box">
+      
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+ 
+    <div class="video-block" data-player-id="yt3" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt3"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+    <div class="video-box">
+      
+      <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+ 
+    <div class="video-block" data-player-id="yt4" data-video-id="e3uG3NOH0BU">
+    <iframe id="yt4"></iframe>
+    <br>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+    
+  </div>   
+
+
+  <h2>📿 Bộ Sưu Tập Video Phật Pháp</h2>
 
   <h2>📿 BỘ SƯU TẬP VIDEO MỚI NHẤT TRÊN KÊNH PHẬT DẠY CON LÀM THEO</h2>
 
@@ -274,7 +558,7 @@
     <
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"></>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="./widgets/ai-phatday.js"></script>
