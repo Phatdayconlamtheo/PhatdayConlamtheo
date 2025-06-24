@@ -16,7 +16,8 @@
 
   </head>
   <body>
-    
+    <script src="./fix-path.js"></script>
+
         <!-- NHÚNG ĐỌC TRANG  -->
 
     <div style="display: flex; gap: 10px; flex-wrap: wrap">
@@ -190,16 +191,6 @@
       <div id="news-ticker"></div>
     </div>
 
-    <div>
-      <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label>
-
-      <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label>
-    
-      <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label>
-    
-      <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label>
-
-    </div>
 
     <!-- 🎬 Video nền -->
   
@@ -209,12 +200,7 @@
 
     <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
     
-      🌗 Giao diện:</label>
-      <select id="dark-mode-select">
-        <option value="auto">Tự động</option>
-        <option value="dark">Tối</option>
-        <option value="light">Sáng</option>
-      </select>
+    
     </div>
 
       <h2>📿 Bộ Sưu Tập Video Phật Pháp</h2>
@@ -265,7 +251,6 @@
       crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/widgets/ai-phatday.js"></script>
-    <script src="/widgets/clock-widget.js"></script>
     <script src="/widgets/background-music.js"></script>
     <script src="/widgets/settings-panel.js"></script>
     <script src="/widgets/buddha-quotes.js"></script>
@@ -280,6 +265,7 @@
     <script src="/widgets/wakeup-bell.js"></script>
     <script src="/widgets/weather-widget.js"></script>
     <script src="/widgets/news-ticker.js"></script>
+    <script src="/widgets/clock-widget.js"></script>
 
 
   </body>
