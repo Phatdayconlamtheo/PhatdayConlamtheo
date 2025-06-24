@@ -11,6 +11,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/widgets/style.css">
+
 
   </head>
   <body>
@@ -19,9 +21,9 @@
 
     <div style="display: flex; gap: 10px; flex-wrap: wrap">
       <button onclick="toggleRead()">
-        📖 <span id="button-text">ĐỌC NỘI DUNG TRANG</span>
+        📖<span id="button-text">ĐỌC NỘI DUNG TRANG</span>
       </button>
-      <button id="ttsBtn" onclick="toggleTTS()">🔊 PHÁT NỘI DUNG TRANG</button>
+      <button id="ttsBtn" onclick="toggleTTS()">🔊PHÁT NỘI DUNG TRANG</button>
       <select id="voiceSelect">
         <option value="">CHỌN GIỌNG ĐỌC</option>
       </select>
@@ -263,8 +265,7 @@
       crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="/widgets/ai-phatday.js "></script> 
-    <script src="/widgets/news-ticker.js"></script>
+    <script src="/widgets/ai-phatday.js"></script>
     <script src="/widgets/clock-widget.js"></script>
     <script src="/widgets/background-music.js"></script>
     <script src="/widgets/settings-panel.js"></script>
@@ -279,7 +280,8 @@
     <script src="/widgets/secret-admin.js"></script>
     <script src="/widgets/wakeup-bell.js"></script>
     <script src="/widgets/weather-widget.js"></script>
-    <script src="/thu-vien-video/v5script.js"></script>
+    <script src="/widgets/news-ticker.js"></script>
+
 
   </body>
 </html>

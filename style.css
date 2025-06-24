@@ -11,49 +11,6 @@ body {
       padding: 40px 10px;
     }
     
-  
-  /* style.css - giao diện cho weather + news */
-
-#weather-widget {
-  background: transparent;
-  color: red;
-  font-size: 30px;
-  font-weight: bold;
-border: 2px solid rgba(255, 255, 255, 0.2);
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 10px;
-  text-align: center;
-  font-family: sans-serif;
-  z-index: 9999;
-
-}
-
-#news-ticker {
-  background: rgba(26, 26, 25, 0.445);
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
-  backdrop-filter: blur(5px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  width: 100%;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  font-family: sans-serif;
-  overflow: hidden;
-  z-index: 9999;
-}
-
-marquee {
-  font-weight: 500;
-}
     
   
 button {
