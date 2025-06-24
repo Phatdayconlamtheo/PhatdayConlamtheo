@@ -1,0 +1,1 @@
+console.log('Chứng chỉ PDF generator');

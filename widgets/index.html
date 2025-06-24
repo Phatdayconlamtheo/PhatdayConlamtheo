@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phật dạy Con làm theo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.dark-mode {
+      background-color: #111;
+      color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video nền -->
+  <video id="my-video" autoplay muted loop playsinline style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;">
+    <source src="your-video.mp4" type="video/mp4">
+    Trình duyệt không hỗ trợ video.
+  </video>
+
+  <!-- Nhạc nền -->
+  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
+
+  <!-- Tự động dark mode -->
+  <script>
+    (function () {
+      const hour = new Date().getHours();
+      const isDark = (hour >= 18 || hour < 5);
+      if (isDark) document.body.classList.add("dark-mode");
+      else document.body.classList.remove("dark-mode");
+    })();
+  </script>
+
+  <!-- Tắt nhạc nếu video phát -->
+  <script>
+    const video = document.getElementById("my-video");
+    const music = document.getElementById("bg-music");
+    if (video && music) {
+      video.onplay = () => music.pause();
+      video.onpause = () => {
+        const toggle = document.getElementById("toggle-music");
+        if (!toggle || toggle.checked) music.play();
+      };
+    }
+  </script>
+
+  <!-- Tải các widget -->
+  <script src="weather.js"></script>
+  <script src="news.js"></script>
+  <script src="clock.js"></script>
+  <script src="daily-quote.js"></script>
+  <script src="meditation-mode.js"></script>
+  <script src="layout-config.js"></script>
+  <script src="special-days.js"></script>
+  <script src="share-image.js"></script>
+  <script src="ai-phatday.js"></script>
+
+</body>
+</html>
+
+<!-- V4.0 scripts -->
+<script src="auto-chanting.js"></script>
+<script src="wakeup-bell.js"></script>
+<script src="playlist.js"></script>
+<script src="secret-admin.js"></script>

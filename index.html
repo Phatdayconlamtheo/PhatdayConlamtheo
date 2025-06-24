@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phật dạy Con làm theo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/widgets/style.css">
+
+
+  </head>
+  <body>
+    
+        <!-- NHÚNG ĐỌC TRANG  -->
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      <button onclick="toggleRead()">
+        📖<span id="button-text">ĐỌC NỘI DUNG TRANG</span>
+      </button>
+      <button id="ttsBtn" onclick="toggleTTS()">🔊PHÁT NỘI DUNG TRANG</button>
+      <select id="voiceSelect">
+        <option value="">CHỌN GIỌNG ĐỌC</option>
+      </select>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+      let isLoaded = false;
+      let isSpeaking = false;
+      let utterance;
+      let sentenceQueue = [];
+      let currentIdx = 0;
+      let voices = [];
+
+      function toggleRead() {
+        const output = document.getElementById("output");
+        const btnText = document.getElementById("button-text");
+
+        if (!isLoaded) {
+          const elements = Array.from(
+            document.querySelectorAll("p, h1, h2, h3, li, blockquote")
+          );
+          const text = elements.map((el) => el.innerText).join("\n");
+          const sentences = text.split(/(?<=[.?!])\s+/); // chia câu
+          output.innerHTML = sentences
+            .map((s, i) => `<span id="sent-${i}">${s}</span>`)
+            .join(" ");
+          sentenceQueue = sentences;
+          isLoaded = true;
+        }
+
+        if (output.classList.contains("show")) {
+          output.classList.remove("show");
+          btnText.innerText = "ĐỌC NỘI DUNG TRANG";
+          stopTTS();
+        } else {
+          output.classList.add("show");
+          btnText.innerText = "ẨN NỘI DUNG TRANG";
+        }
+      }
+
+      function toggleTTS() {
+        if (!isSpeaking) {
+          startReading();
+        } else {
+          stopTTS();
+        }
+      }
+
+      function startReading() {
+        isSpeaking = true;
+        currentIdx = 0;
+        document.getElementById("ttsBtn").innerText = "⏹️ DỪNG ĐỌC NỘI DUNG";
+        readNextSentence();
+      }
+
+      function readNextSentence() {
+        if (currentIdx >= sentenceQueue.length) {
+          stopTTS();
+          return;
+        }
+
+        highlightSentence(currentIdx);
+
+        utterance = new SpeechSynthesisUtterance(sentenceQueue[currentIdx]);
+        utterance.lang = "vi-VN";
+
+        // Gán giọng nếu chọn
+        const voiceSelect = document.getElementById("voiceSelect");
+        const selectedVoiceURI = voiceSelect.value;
+        if (selectedVoiceURI) {
+          const found = voices.find((v) => v.voiceURI === selectedVoiceURI);
+          if (found) utterance.voice = found;
+        }
+
+        utterance.onend = () => {
+          unhighlightSentence(currentIdx);
+          currentIdx++;
+          if (isSpeaking) readNextSentence();
+        };
+
+        speechSynthesis.speak(utterance);
+      }
+
+      function stopTTS() {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        document.getElementById("ttsBtn").innerText = "🔊 ĐỌC NỘI DUNG TRANG";
+        unhighlightSentence(currentIdx);
+      }
+
+      function highlightSentence(idx) {
+        const el = document.getElementById(`sent-${idx}`);
+        if (el) el.classList.add("highlight");
+      }
+
+      function unhighlightSentence(idx) {
+        const el = document.getElementById(`sent-${idx}`);
+        if (el) el.classList.remove("highlight");
+      }
+
+          // Lấy danh sách giọng nói
+      function loadVoices() {
+        voices = speechSynthesis.getVoices();
+        const voiceSelect = document.getElementById("voiceSelect");
+        voiceSelect.innerHTML = `<option value="">CHỌN GIỌNG ĐỌC</option>`;
+        voices
+          .filter(
+            (v) =>
+              v.lang.startsWith("vi") ||
+              v.name.toLowerCase().includes("vietnam")
+          )
+          .forEach((v) => {
+            const opt = document.createElement("option");
+            opt.value = v.voiceURI;
+            opt.textContent = `${v.name} (${v.lang})`;
+            voiceSelect.appendChild(opt);
+          });
+      }
+
+      speechSynthesis.onvoiceschanged = loadVoices;
+      autoSetTheme();
+    </script>
+
+
+      <nav
+    <div class="hero">
+      <h1><strong>Phật dạy Con làm theo</strong></h1>
+    </div>
+    <hr>
+      <p class="subtitle">
+        <h3><strong>Chia sẻ Phật pháp, Ăn chay, Đạo làm người và Lời hay ý đẹp.</strong></h3>
+      </p>
+    <div class="circle-menu">
+      <a href="gioi-thieu.html" title="Giới Thiệu">📜
+      </a>
+      <a href="video.html" title="Video">🎥
+      </a>
+      <a href="bai-viet.html" title="Bài Viết">📖
+      </a>
+      <a href="https://www.youtube.com/@PhatdayConlamtheo" class="center" title="Đăng Ký Kênh YouTube" target="_self">🔔
+      </a>
+      <a href="tu-sach.html" title="Tủ Sách">📚
+      </a>
+      <a href="goc-thien.html" title="Góc Thiền">🧘
+      </a>
+      <a href="tai-mp3.html" title="Tải MP3">🎧
+      </a>
+    </div>
+          
+        <h2>📿 VIDEO MỚI NHẤT TRÊN KÊNH PHẬT DẠY CON LÀM THEO</h2>
+  
+                <!-- NHÚNG THỜI TIẾT -->
+  
+    <audio controls autoplay=1 loop=1>
+      <source src="nhac-nen.mp3" type="audio/mpeg" />
+      Trình duyệt không hỗ trợ audio.
+    </audio>
+
+    <div id="widgets">
+      <div id="weather-widget"></div>
+      <div id="clock-widget"></div>
+      <div id="news-ticker"></div>
+    </div>
+
+    <div>
+      <label><input type="checkbox" id="toggle-weather" checked> Hiện thời tiết</label>
+
+      <label><input type="checkbox" id="toggle-news" checked> Hiện tin tức</label>
+    
+      <label><input type="checkbox" id="toggle-clock" checked> Hiện đồng hồ</label>
+    
+      <label><input type="checkbox" id="toggle-music" checked> Bật nhạc nền</label>
+
+    </div>
+
+    <!-- 🎬 Video nền -->
+  
+    <div class="video-box">
+  
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+
+    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
+    
+      🌗 Giao diện:</label>
+      <select id="dark-mode-select">
+        <option value="auto">Tự động</option>
+        <option value="dark">Tối</option>
+        <option value="light">Sáng</option>
+      </select>
+    </div>
+
+      <h2>📿 Bộ Sưu Tập Video Phật Pháp</h2>
+
+  <h2>📿 BỘ SƯU TẬP VIDEO MỚI NHẤT TRÊN KÊNH PHẬT DẠY CON LÀM THEO</h2>
+
+  <div class="video-row">
+    
+    <div class="video-box">
+      
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+
+    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
+    
+    <div class="video-box">
+    
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+
+    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
+    
+    <div class="video-box">
+      
+    <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+ 
+    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
+    
+    <div class="video-box">
+      
+      <h2 style="text-align: center; color: #8B0000; margin-top: 0px;">
+ 
+    <iframe allowfullscreen src="https://www.youtube.com/embed/e3uG3NOH0BU?feature=oembed&amp;autoplay=1&amp;wmode=opaque&amp;loop=1&amp;controls=0&amp;mute=1&amp;rel=0&amp;modestbranding=0" loading="lazy"></iframe></div>
+    
+  </div>   
+    
+      <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Chào mừng bạn đến với KÊNH PHẬT DẠY CON LÀM THEO</h2>
+          <p>
+            KÊNH PHẬT DẠY CON LÀM THEO là nơi chia sẻ những bài viết, video và tài liệu về Phật pháp, ăn chay, đạo làm người và những lời hay ý đẹp. Chúng tôi hy vọng sẽ mang đến cho bạn những kiến thức bổ ích và những giây phút thư giãn.
+          </p>
+        </div>
+      </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/widgets/ai-phatday.js"></script>
+    <script src="/widgets/clock-widget.js"></script>
+    <script src="/widgets/background-music.js"></script>
+    <script src="/widgets/settings-panel.js"></script>
+    <script src="/widgets/buddha-quotes.js"></script>
+    <script src="/widgets/meditation-mode.js"></script>
+    <script src="/widgets/layout-config.js"></script>
+    <script src="/widgets/special-days.js"></script>
+    <script src="/widgets/share-image.js"></script>
+    <script src="/widgets/auto-chanting.js"></script>
+    <script src="/widgets/playlist.js"></script>
+    <script src="/widgets/script.js"></script>
+    <script src="/widgets/secret-admin.js"></script>
+    <script src="/widgets/wakeup-bell.js"></script>
+    <script src="/widgets/weather-widget.js"></script>
+    <script src="/widgets/news-ticker.js"></script>
+
+
+  </body>
+</html>
