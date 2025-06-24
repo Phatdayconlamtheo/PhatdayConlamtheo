@@ -1,163 +1,126 @@
+/*CHÈN STYLE ĐỌC TRANG*/
 body {
   background-image: url("images/phat-bg.jpg");
-  background-size: 100%;
+
+  background-size: autofill;
   background-attachment: fixed;
-  {
-      background: #111;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px 10px;
-    }
 
-    /* style.css - giao diện cho weather + news */
-  <style>
-    #weather-widget {
-      background: transparent;
-      color: blue;
-      font: bold;
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-      font-family: sans-serif;
-      z-index: 9999;
-    }
 
-    #news-ticker {
-      background: #696666;
-      color: red;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 4px;
-      font-family: sans-serif;
-      overflow: hidden;
-      z-index: 9999;
-    }
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 40px;
+  transition: background 0.4s, color 0.4s;
+}
 
-      marquee {
-      font-weight: 500;
-    } 
-    </style>
-    /*CHÈN STYLE ĐỌC TRANG*/
+body.light {
+  background: #fffaf0;
+  color: #222;
+}
 
-    <style>
-    body {
-      font-family: 'Segoe UI', sans-serif; THƯ PHÁP ĐỌC TRANG
-      margin: 40px;
-      transition: background 0.4s, color 0.4s;
-    }
+body.dark {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
 
-    body.light {
-      background: #fffaf0;
-      color: #222;
-    }
+button {
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+  border: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
 
-    body.dark {
-      background: #1e1e1e;
-      color: #f0f0f0;
-    }
+button:hover {
+  background-color: red;
+  color: yellow;
+  font-weight: bold;
+  border: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
 
-    button {
-      background-color: yellow;
-      color: red;
-      font-weight: bold;
-      border: auto;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 32px;
-      font-weight: bold;
-      margin-left: 10px;
-      transition: background-color 0.3s;
-    }
+.arrow {
+  transition: transform 0.4s ease;
+}
 
-    button:hover {
-      background-color: red;  
-      color: yellow;
-      font-weight: bold;
-      border: auto;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 32px;
-      font-weight: bold;
-      margin-left: 10px;
-      transition: background-color 0.3s;
-    }
+.rotated {
+  transform: rotate(180deg);
+}
 
-    .arrow {
-      transition: transform 0.4s ease;
-    }
+#output {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, padding 0.3s ease;
+  white-space: pre-line;
+  margin-top: 10px;
+  padding: 0 10px;
+  background: hwb(0 85% 10%);
+  color: black;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
 
-    .rotated {
-      transform: rotate(180deg);
-    }
+body.dark #output {
+  background: #2b2b2b;
+  border-color: #444;
+}
 
-    #output {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s ease, padding 0.3s ease;
-      white-space: pre-line;
-      margin-top: 10px;
-      padding: 0 10px;
-      background: hwb(0 85% 10%);
-      color: black;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
+#output.show {
+  padding: 15px;
+  max-height: 1500px;
+}
 
-    body.dark #output {
-      background: #2b2b2b;
-      border-color: #444;
-    }
+#ttsBtn {
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+  border: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
 
-    #output.show {
-      padding: 15px;
-      max-height: 1500px;
-    }
+#ttsBtn:hover {
+  background-color: red;
+  color: yellow;
+  font-weight: bold;
+  border: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
 
-    #ttsBtn {
-      background-color: yellow;
-      color: red;
-      font-weight: bold;
-      border: auto;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 32px;
-      font-weight: bold;
-      margin-left: 10px;
-      transition: background-color 0.3s;
-    }
-
-    #ttsBtn:hover {
-      background-color: red;
-      color: yellow;
-      font-weight: bold;
-      border: auto;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 32px;
-      font-weight: bold;
-      margin-left: 10px;
-      transition: background-color 0.3s;
-      
-    }
-  </STYLE>
-  
 button {
   margin-top: 0px;
   padding: 10px 20px;
@@ -169,7 +132,7 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-  
+
 button:hover {
   background-color: red;
   color: yellow;
@@ -177,66 +140,64 @@ button:hover {
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-      background: #fdf6e3;
-      color: #5d4037;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .player {
-      background: #fff8e1;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      width: 350px;
-      text-align: center;
-    }
-    .player h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #6d4c41;
-    }
-    .track-select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      background: #fff3e0;
-      font-size: 16px;
-    }
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
-    
+  font-family: "Segoe UI", sans-serif;
+  background: #fdf6e3;
+  color: #5d4037;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.player {
+  background: #fff8e1;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+}
+.player h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #6d4c41;
+}
+.track-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #fff3e0;
+  font-size: 16px;
+}
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: var(--bg-light);
-      color: var(--text-light);
-      transition: all 0.3s ease;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
 
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    
-  
-  .hero {
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.hero {
   background: rgba(255, 255, 255, 0.15);
   padding: 10px 6px;
   font-size: 14px;
-  
+
   font-weight: bold;
   color: red;
 }
