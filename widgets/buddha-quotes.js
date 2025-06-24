@@ -27,7 +27,7 @@
   box.style.fontStyle = "italic";
   document.body.appendChild(box);
   if (document.body.classList.contains("dark-mode")) {
-    box.style.background = "rgba(0,0,0,0.7)";
+    box.style.background = "transparent";
     box.style.color = "#eee";
   }
 })();
