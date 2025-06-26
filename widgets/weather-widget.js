@@ -12,7 +12,7 @@
 
   weatherBox.style.left = "0px";
 
-  weatherBox.style.right = "1500px";
+  weatherBox.style.right = auto;
 
   document.body.appendChild(weatherBox);
 
