@@ -4,8 +4,8 @@
   weatherBox.id = "weather-widget";
   weatherBox.style.position = "fixed";
   weatherBox.style.top = "0px";
-  weatherBox.style.left = "1500";
-  weatherBox.style.right = "0";
+  weatherBox.style.left = "0px";
+  weatherBox.style.right = "1500px";
   document.body.appendChild(weatherBox);
 
   weatherBox.innerHTML = `<span id="weather-info">Đang tải thông tin thời tiết...</span>`;
