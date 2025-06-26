@@ -8,7 +8,7 @@
   weatherBox.style.right = "1500px";
   document.body.appendChild(weatherBox);
 
-  weatherBox.innerHTML = `<span id="weather-info">Đang tải thông tin thời tiết...</span>`;
+  weatherBox.innerHTML = `<span id="weather-info">Cập nhật thời tiết...</span>`;
 
   async function getWeather(lat, lon) {
     const res = await fetch(
@@ -17,10 +17,10 @@
     const data = await res.json();
     const weather = data.current_weather;
     const status =
-      weather.weathercode === 0 ? "Trời quang" : "Thời tiết thay đổi";
+      weather.weathercode === 0 ? "Trời quang" ;
     document.getElementById(
       "weather-info"
-    ).innerText = `Thời tiết hiện tại: ${weather.temperature}°C - ${status}`;
+    ).innerText = `Hiện tại: ${weather.temperature}°C - ${status}`;
   }
 
   if (navigator.geolocation) {
