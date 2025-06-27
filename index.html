@@ -271,141 +271,150 @@
   </div>
 </div>
 
-  <!-- ⚙️ Điều chỉnh tốc độ fade -->
-  <div class="fade-speed">
-    ⏱️ Tốc độ fade âm lượng:
-    <input id="fade-speed" type="range" min="100" max="1000" value="200">
-    <span id="fade-val">200 ms</span>
-  </div>
+  
+  <!-- ⚙️ Điều chỉnh tốc độ fade -->
+<div class="fade-speed">
+  ⏱️ Tốc độ fade âm lượng:
+  <input id="fade-speed" type="range" min="100" max="1000" value="200">
+  <span id="fade-val">200 ms</span>
+</div>
 
-  <script>
-    const players = {};
-    let fadeSpeed = 200;
+<!-- Nhạc nền -->
+<audio id="background-music" loop src="music.mp3"></audio>
+<button id="music-toggle">🎵 Bật nhạc nền</button>
 
-    // Cập nhật slider tốc độ
-    const fadeSlider = document.getElementById('fade-speed');
-    const fadeVal = document.getElementById('fade-val');
-    fadeSlider.addEventListener('input', () => {
-      fadeSpeed = parseInt(fadeSlider.value);
-      fadeVal.textContent = `${fadeSpeed} ms`;
-    });
+<script>
+  const players = {};
+  let fadeSpeed = 200;
 
-    // Tải API YouTube
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
+  // Cập nhật tốc độ fade từ slider
+  const fadeSlider = document.getElementById('fade-speed');
+  const fadeVal = document.getElementById('fade-val');
+  fadeSlider.addEventListener('input', () => {
+    fadeSpeed = parseInt(fadeSlider.value);
+    fadeVal.textContent = `${fadeSpeed} ms`;
+  });
 
-    // Sau khi API đã sẵn sàng
-    function onYouTubeIframeAPIReady() {
-      document.querySelectorAll('.video-block').forEach(block => {
-        const playerId = block.dataset.playerId;
-        const videoId = block.dataset.videoId;
-        const iframe = block.querySelector('iframe');
-        const button = block.querySelector('.mute-toggle');
+  // Tải API YouTube
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
 
-        // Gán src cho iframe
-        iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+  // Khởi tạo nhạc nền
+  const music = document.getElementById('background-music');
+  const musicBtn = document.getElementById('music-toggle');
+  let musicPlaying = false;
 
-        // Khởi tạo player
-        players[playerId] = new YT.Player(playerId, {
-          events: {
-            onReady: () => setupPlayerShared(playerId, iframe, button)
-          }
-        });
+  // API YouTube sẵn sàng
+  function onYouTubeIframeAPIReady() {
+    document.querySelectorAll('.video-block').forEach(block => {
+      const playerId = block.dataset.playerId;
+      const videoId = block.dataset.videoId;
+      const iframe = block.querySelector('iframe');
+      const button = block.querySelector('.mute-toggle');
+
+      iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`;
+
+      players[playerId] = new YT.Player(playerId, {
+        events: {
+          onReady: () => setupPlayerShared(playerId, iframe, button)
+        }
       });
+    });
+  }
+
+  function setupPlayerShared(playerId, iframe, button) {
+    const player = players[playerId];
+    const key = `muteState_${playerId}`;
+    const saved = localStorage.getItem(key);
+
+    if (saved === 'unmuted') {
+      player.unMute();
+      fadeIn(player);
+      iframe.classList.remove('blurred');
+      button.textContent = '🔊 Đang phát tiếng';
+    } else {
+      player.mute();
+      iframe.classList.add('blurred');
+      button.textContent = '🔇 Tắt tiếng';
     }
 
-    function setupPlayerShared(playerId, iframe, button) {
-      const player = players[playerId];
-      const key = `muteState_${playerId}`;
-      const saved = localStorage.getItem(key);
+    button.addEventListener('click', () => {
+      if (player.isMuted()) {
+        // Tắt nhạc nền nếu đang phát
+        if (musicPlaying) {
+          music.pause();
+          musicPlaying = false;
+          musicBtn.textContent = '🎵 Bật nhạc nền';
+        }
 
-      if (saved === 'unmuted') {
         player.unMute();
         fadeIn(player);
         iframe.classList.remove('blurred');
         button.textContent = '🔊 Đang phát tiếng';
+        localStorage.setItem(key, 'unmuted');
       } else {
-        player.mute();
-        iframe.classList.add('blurred');
-        button.textContent = '🔇 Tắt tiếng';
-      }
-      button.addEventListener('click', () => {
-  
-        if (player.isMuted()) {
-          player.unMute();
-          fadeIn(player);
-          iframe.classList.remove('blurred');
-          button.textContent = '🔊 Đang phát tiếng';
-          localStorage.setItem(key, 'unmuted');
-        } else {
-          fadeOut(player, () => {
-            player.mute();
-            iframe.classList.add('blurred');
-            button.textContent = '🔇 Tắt tiếng';
-            localStorage.setItem(key, 'muted');
-          });
-        }
-      });
-    }
-
-    function fadeIn(player) {
-      let vol = 0;
-      player.setVolume(vol);
-      const fade = setInterval(() => {
-        if (vol < 100) {
-          vol += 10;
-          player.setVolume(vol);
-        } else {
-          clearInterval(fade);
-        }
-      }, fadeSpeed);
-    }
-
-    function fadeOut(player, callback) {
-      let vol = player.getVolume();
-      const fade = setInterval(() => {
-        if (vol > 0) {
-          vol -= 10;
-          player.setVolume(vol);
-        } else {
-          clearInterval(fade);
-          callback();
-        }
-      }, fadeSpeed);
-    }
-        
-        
-        // Nhạc nền
-const music = document.getElementById('background-music');
-const musicBtn = document.getElementById('music-toggle');
-let musicPlaying = false;
-
-musicBtn.addEventListener('click', () => {
-  if (!musicPlaying) {
-    music.play();
-    musicBtn.textContent = '⏸️ Tắt nhạc nền';
-    musicPlaying = true;
-    // Tắt tất cả video
-    Object.values(players).forEach(player => {
-      if (!player.isMuted()) {
         fadeOut(player, () => {
           player.mute();
-          document.getElementById(player.getIframe().id).classList.add('blurred');
-          // Lưu trạng thái
-          localStorage.setItem(`muteState_${player.getIframe().id}`, 'muted');
+          iframe.classList.add('blurred');
+          button.textContent = '🔇 Tắt tiếng';
+          localStorage.setItem(key, 'muted');
         });
       }
     });
-  } else {
-    music.pause();
-    musicPlaying = false;
-    musicBtn.textContent = '🎵 Bật nhạc nền';
   }
-});
-  </script>
-  
-  
+
+  // Hiệu ứng fade âm lượng
+  function fadeIn(player) {
+    let vol = 0;
+    player.setVolume(vol);
+    const fade = setInterval(() => {
+      if (vol < 100) {
+        vol += 10;
+        player.setVolume(vol);
+      } else {
+        clearInterval(fade);
+      }
+    }, fadeSpeed);
+  }
+
+  function fadeOut(player, callback) {
+    let vol = player.getVolume();
+    const fade = setInterval(() => {
+      if (vol > 0) {
+        vol -= 10;
+        player.setVolume(vol);
+      } else {
+        clearInterval(fade);
+        callback();
+      }
+    }, fadeSpeed);
+  }
+
+  // Nhấn nút nhạc nền
+  musicBtn.addEventListener('click', () => {
+    if (!musicPlaying) {
+      music.play();
+      musicBtn.textContent = '⏸️ Tắt nhạc nền';
+      musicPlaying = true;
+
+      // Tắt toàn bộ âm video
+      Object.values(players).forEach(player => {
+        if (!player.isMuted()) {
+          fadeOut(player, () => {
+            player.mute();
+            document.getElementById(player.getIframe().id).classList.add('blurred');
+            localStorage.setItem(`muteState_${player.getIframe().id}`, 'muted');
+          });
+        }
+      });
+    } else {
+      music.pause();
+      musicPlaying = false;
+      musicBtn.textContent = '🎵 Bật nhạc nền';
+    }
+  });
+</script>
      
       <div class="container">
       <div class="row">
@@ -416,8 +425,8 @@ musicBtn.addEventListener('click', () => {
           </p>
         </div>
       </div>
-
-    <
+        
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"></>
