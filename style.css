@@ -214,7 +214,7 @@ h2 {
   text-align: center;
   font-size: 2em;
   margin: auto;
-  font-weight: bold;
+  font-weight: bold;border: 4px;
   color: red;
 }
 
@@ -228,12 +228,25 @@ h3 {
 
 h4 {
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.5em;
   margin: auto;
   font-weight: bold;
   color: crimson;
 }
-
+h5 {
+  text-align: center;
+  font-size: 1.4em;
+  margin: auto;
+  font-weight: bold;
+  color: crimson;
+}
+  h6 {
+  text-align: center;
+  font-size: 1em;
+  margin: auto;
+  font-weight: bold;
+  color: crimson;
+}
 .subtitle {
   text-align: center;
   font-size: 1.5em;
