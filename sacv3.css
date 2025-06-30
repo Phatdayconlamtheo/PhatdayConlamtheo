@@ -1,0 +1,66 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #fdf6ec, #fff);
+  color: #333;
+  padding: 20px;
+}
+.controls {
+  margin-bottom: 20px;
+}
+.controls button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #ffe6b3;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.controls button:hover {
+  background: #ffda99;
+}
+.status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #b33c00;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.video-block {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+iframe {
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 10px;
+}
+.mute-toggle {
+  margin-top: 10px;
+  background: #ffebcc;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#music-display {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+#track-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
