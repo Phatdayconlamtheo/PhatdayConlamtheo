@@ -304,6 +304,60 @@
     </div>
   </div>
 
+    <!-- Trang 1: Bài viết Tâm Linh -->
+<section class="article-section">
+  <h2 style="text-align:center; color:crimson; margin-bottom: 20px;">🕊️ BÀI VIẾT TÂM LINH</h2>
+  <div class="article-grid">
+    <div class="article-box">
+      <h3>Buông Bỏ Để Nhẹ Nhàng</h3>
+      <p>Mỗi ngày là một cơ hội để gột rửa tâm trí. Khi ta biết buông, ta mới thực sự bắt đầu sống...</p>
+      <a href="bai-viet/buong-bo.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Sức Mạnh Của Chánh Niệm</h3>
+      <p>Giữa muôn trùng xao động, chánh niệm như chiếc neo giữ ta vững giữa biển đời...</p>
+      <a href="bai-viet/chanh-niem.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Hiểu Để Thương</h3>
+      <p>Chỉ khi hiểu sâu sắc về khổ đau, ta mới có thể mở lòng để thương mà không điều kiện...</p>
+      <a href="bai-viet/hieu-de-thuong.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Tĩnh Lặng Là Trí Tuệ</h3>
+      <p>Tĩnh lặng không phải là sự im lặng thụ động, mà là sự sáng suốt nội tâm, là tiếng nói của trí tuệ...</p>
+      <a href="bai-viet/tinh-lang.html" class="read-more">Xem tiếp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Trang 2: Blog Hành Trình -->
+<section class="article-section">
+  <h2 style="text-align:center; color:darkgreen; margin-bottom: 20px;">📝 BLOG HÀNH TRÌNH</h2>
+  <div class="article-grid">
+    <div class="article-box">
+      <h3>Ngày đầu học thiền</h3>
+      <p>Chiều hôm ấy, lần đầu tôi ngồi im thật lâu. Không ngờ, sự tĩnh lặng lại khiến nước mắt trào ra...</p>
+      <a href="blog/ngay-dau-thien.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Đi bộ trong chánh niệm</h3>
+      <p>Mỗi bước chân đặt xuống, tôi như nghe tiếng đất mẹ thì thầm. Mỗi hơi thở, là một đoá sen nở...</p>
+      <a href="blog/di-bo-chanh-niem.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Cuộc nói chuyện với Thầy</h3>
+      <p>Thầy hỏi tôi: “Con đang tìm gì?” Tôi không biết trả lời sao. Nhưng lòng thì nhẹ hẳn đi...</p>
+      <a href="blog/noi-chuyen-voi-thay.html" class="read-more">Xem tiếp →</a>
+    </div>
+    <div class="article-box">
+      <h3>Bình yên giữa phố xá</h3>
+      <p>Trong tiếng còi xe và dòng người, tôi vẫn giữ được hơi thở đều, và một khoảng trời riêng trong tâm...</p>
+      <a href="blog/binh-yen.html" class="read-more">Xem tiếp →</a>
+    </div>
+  </div>
+</section>
+    
   
   <!-- ⚙️ Điều chỉnh tốc độ fade -->
 <div class="fade-speed">
@@ -452,6 +506,42 @@ nền -->
   });
 </script>
      
+    ody>
+  <audio id="bg-music" src="nhac-nen.mp3" autoplay loop></audio>
+
+  <div class="reader-container">
+    <div class="reader-header">
+      <h1>Bình yên giữa phố xá</h1>
+      <p class="subtitle">Hành trình thiền giữa đời thường</p>
+    </div>
+
+    <div id="article-reader">
+      <p>Giữa tiếng còi xe, giữa dòng người hối hả, tôi bước chậm lại, thở một hơi dài. Tôi không đi đâu cả. Tôi chỉ đang đi về với chính mình.</p>
+      <p>Mỗi bước chân là một phép màu. Dưới chân tôi, đất mẹ đang ôm lấy từng bước đi. Tôi biết mình đang sống.</p>
+      <p>Tôi không cần rời bỏ thành phố để tìm sự bình yên. Tôi chỉ cần dừng lại, ngay giữa chốn ồn ào này, và trở về bên trong.</p>
+      <p>Khi tôi lắng nghe tiếng còi xe mà không phiền não, tiếng còi ấy trở thành tiếng chuông tỉnh thức.</p>
+      <p>Và tôi mỉm cười – giữa dòng đời, tôi vẫn còn nguyên vẹn một khoảng trời riêng trong tâm hồn mình.</p>
+    </div>
+  </div>
+
+  <script>
+    // Highlight từng đoạn khi đọc (scroll vào)
+    const paragraphs = document.querySelectorAll("#article-reader p");
+    const options = { threshold: 0.5 };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    }, options);
+
+    paragraphs.forEach(p => observer.observe(p));
+  </script>
+    
       <div class="container">
       <div class="row">
         <div class="col-md-12">
