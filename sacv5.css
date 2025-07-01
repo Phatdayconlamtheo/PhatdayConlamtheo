@@ -1,0 +1,71 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
+  color: #333;
+  margin: 0;
+  transition: background 0.5s, color 0.5s;
+}
+.dark-mode {
+  background: #121212;
+  color: #eee;
+}
+.top-bar {
+  text-align: right;
+  padding: 10px;
+}
+.controls {
+  text-align: center;
+  padding: 10px;
+  background: #f0f0f0;
+}
+.dark-mode .controls {
+  background: #1e1e1e;
+}
+.status {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: green;
+}
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.video-block, .video-full-block {
+  position: relative;
+  width: 45%;
+  aspect-ratio: 16/9;
+  background: #000;
+}
+.video-full-block {
+  width: 95%;
+  margin: 20px auto;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.mute-toggle {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+#music-display {
+  text-align: center;
+  margin: 10px;
+}
+#track-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.highlighted {
+  outline: 3px solid gold;
+}
