@@ -10,12 +10,10 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
-      <link rel="stylesheet" href="./style.css">
-      <link rel="stylesheet" href="./sacv3.css"
-      
-      
+      <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./sacv443.css"/>
     
-
+      
   </head>
 
   <body>
@@ -239,69 +237,53 @@
     </div>
     </nav>
       <!-- Video chính -->
+      
+    <div class="top-bar">
+    <button id="toggle-theme">🌙</button>
+  </div>
 
-    <div>
-      <iframe
-        class="video-full"
-        src="https://www.youtube.com/embed/e3uG3NOH0BU?autoplay=1&mute=1&loop=1&playlist=e3uG3NOH0BU&controls=0&rel=0&modestbranding=1"
-        allowfullscreen
-      ></iframe>
-      <button class="audio-toggle">🔇 Tắt tiếng</button>
+  <div class="controls">
+    <button id="music-toggle">🎵 Bật nhạc nền</button>
+    <button id="next-track">⏭️ Tiếp</button>
+    <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
+    <button id="mute-all">🛑 Tắt tất cả</button>
+    <div class="status" id="status-msg"></div>
+  </div>
+
+  <div id="music-display">
+    <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
+    <div id="current-track-name">🎵 Đang phát: Chưa có bài nào</div>
+  </div>
+
+  <audio id="background-music" loop preload="auto">
+    <source src="music/1.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="video-full-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
+    <iframe id="player1"></iframe>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
+  </div>
+
+  <div class="video-grid">
+    <div class="video-block" data-player-id="player2" data-video-id="e3uG3NOH0BU">
+      <iframe id="player2"></iframe>
+      <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-
-    <div class="video-grid">
-      <div class="video-block">
-        <iframe
-          src="https://www.youtube.com/embed/e3uG3NOH0BU"
-          allowfullscreen
-        ></iframe>
-        <button class="audio-toggle">🔇 Tắt tiếng</button>
-      </div>
-
-      <div class="video-block">
-        <iframe
-          src="https://www.youtube.com/embed/e3uG3NOH0BU"
-          allowfullscreen
-        ></iframe>
-        <button class="audio-toggle">🔇 Tắt tiếng</button>
-      </div>
-
-      <div class="video-block">
-        <iframe
-          src="https://www.youtube.com/embed/e3uG3NOH0BU"
-          allowfullscreen
-        ></iframe>
-        <button class="audio-toggle">🔇 Tắt tiếng</button>
-      </div>
-
-      <div class="video-block">
-        <iframe
-          src="https://www.youtube.com/embed/e3uG3NOH0BU"
-          allowfullscreen
-        ></iframe>
-        <button class="audio-toggle">🔇 Tắt tiếng</button>
-      </div>
+    <div class="video-block" data-player-id="player3" data-video-id="e3uG3NOH0BU">
+      <iframe id="player3"></iframe>
+      <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
+    <div class="video-block" data-player-id="player4" data-video-id="e3uG3NOH0BU">
+      <iframe id="player4"></iframe>
+      <button class="mute-toggle">🔇 Tắt tiếng</button>
+    </div>
+    <div class="video-block" data-player-id="player5" data-video-id="e3uG3NOH0BU">
+      <iframe id="player5"></iframe>
+      <button class="mute-toggle">🔇 Tắt tiếng</button>
+    </div>
+  </div>
 
-    <!-- Nhạc nền -->
-    <div class="controls">
-  <button id="music-toggle">🎵 Bật nhạc nền</button>
-  <button id="next-track">⏭️ Tiếp</button>
-  <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
-  <button id="mute-all">🛑 Tắt tất cả</button>
-  <div class="status" id="status-msg"></div>
-</div>
-
-<div id="music-display">
-  <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
-  <div id="current-track-name">🎵 Đang phát: Đang tải...</div>
-</div>
-
-<audio id="background-music" loop></audio>
-
-
-
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="controller.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="controller.js"></script>
 </body>
 </html>
