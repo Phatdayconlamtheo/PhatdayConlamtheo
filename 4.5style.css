@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fdfdfd;
+  margin: 0;
+  padding: 0;
+}
+.top-bar {
+  text-align: right;
+  padding: 10px;
+}
+.controls {
+  padding: 10px;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+.status {
+  margin-top: 10px;
+  color: green;
+}
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px;
+}
+.video-block, .video-full-block {
+  position: relative;
+  width: 45%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video-full-block {
+  width: 95%;
+  margin: 20px auto;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.mute-toggle {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+#music-display {
+  text-align: center;
+  margin: 10px;
+}
