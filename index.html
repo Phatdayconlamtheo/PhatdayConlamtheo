@@ -247,17 +247,15 @@
     <button id="next-track">⏭️ Tiếp</button>
     <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
     <button id="mute-all">🛑 Tắt tất cả</button>
-    <div class="status" id="status-msg"></div>
+    <div class="status" id="status-msg">🔊 Chỉ một âm thanh được phát</div>
   </div>
 
   <div id="music-display">
     <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
-    <div id="current-track-name">🎵 Đang phát: Chưa có bài nào</div>
+    <div id="current-track-name">🎵 Đang phát: ...</div>
   </div>
 
-  <audio id="background-music" loop preload="auto">
-    <source src="music/1.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="background-music" preload="auto"></audio>
 
   <div class="video-full-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
     <iframe id="player1"></iframe>
@@ -265,11 +263,11 @@
   </div>
 
   <div class="video-grid">
-    <div class="video-block" data-player-id="player2" data-video-id="e3uG3NOH0BU">
+    <div class="video-block" data-player-id="player2" data-video-id="y6120QOlsfU">
       <iframe id="player2"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-    <div class="video-block" data-player-id="player3" data-video-id="e3uG3NOH0BU">
+    <div class="video-block" data-player-id="player3" data-video-id="hHW1oY26kxQ">
       <iframe id="player3"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
