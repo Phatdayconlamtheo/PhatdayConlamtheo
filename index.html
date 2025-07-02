@@ -10,10 +10,7 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
-      <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="./4.5style.css"/>
-    <link rel="stylesheet" href="./8style.css"/>
-      
+      <link rel="stylesheet" href="style.css" />
     
       
   </head>
@@ -238,46 +235,50 @@
       >
     </div>
     </nav>
-      <!-- Video chính -->
-    body>
+      <!-- Thanh điều khiển -->
   <div class="top-bar">
     <button id="toggle-theme">🌙</button>
   </div>
 
   <div class="controls">
-    <button id="music-toggle">🎵 Nhạc nền</button>
-    <button id="next-track">⏭️</button>
-    <button id="toggle-shuffle">🔀 Ngẫu nhiên</button>
-    <button id="tts-toggle">🗣️ Đọc văn bản</button>
+    <button id="music-toggle">🎵 Bật nhạc nền</button>
+    <button id="next-track">⏭️ Tiếp</button>
+    <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
     <button id="mute-all">🛑 Tắt tất cả</button>
+    <div class="status" id="status-msg"></div>
   </div>
 
-  <div id="tts-display">
-    <div id="tts-container"></div>
-    <button id="record-btn">🔴 Ghi âm</button>
-    <button id="stop-btn">⏹️ Dừng</button>
-  </div>
-
+  <!-- Hiển thị bài hát -->
   <div id="music-display">
     <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
-    <div id="current-track-name">🎵 Đang phát</div>
+    <div id="current-track-name">🎵 Đang phát: Chưa có bài nào</div>
   </div>
 
+  <!-- Mini player -->
+  <div id="mini-player">
+    <span id="mini-track">🎶 Mini Player</span>
+    <button id="mini-pause">⏸</button>
+  </div>
+
+  <!-- Toast thông báo -->
+  <div id="toast"></div>
+
+  <!-- Nhạc nền -->
   <audio id="background-music" loop></audio>
 
-  <div id="toast"></div>
-      
-  <div class="video-full-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
-    <iframe id="player1"></iframe>
-    <button class="mute-toggle">🔇 Tắt tiếng</button>
-  </div>
+  <!-- Video chính toàn màn hình -->
+  <div class="video-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
+      <iframe id="player1"></iframe>
+      <button class="mute-toggle">🔇 Tắt tiếng</button>
+    </div>
 
+  <!-- 4 video còn lại -->
   <div class="video-grid">
-    <div class="video-block" data-player-id="player2" data-video-id="y6120QOlsfU">
+    <div class="video-block" data-player-id="player2" data-video-id="e3uG3NOH0BU">
       <iframe id="player2"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-    <div class="video-block" data-player-id="player3" data-video-id="hHW1oY26kxQ">
+    <div class="video-block" data-player-id="player3" data-video-id="e3uG3NOH0BU">
       <iframe id="player3"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
@@ -291,11 +292,8 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="./5controller.js"></script>
-  <script src="./8controller.js"></script>
-      script>
- script>
-  <script src="./acontroller.js"></script>
-</body>
-</html>
+  <script src="controller.js"></script>
+  </body>
+  </html>
