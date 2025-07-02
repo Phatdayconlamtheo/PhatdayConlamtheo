@@ -12,6 +12,7 @@
     />
       <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./4.5style.css"/>
+    <link rel="stylesheet" href="./8style.css"/>
       
     
       
@@ -238,25 +239,34 @@
     </div>
     </nav>
       <!-- Video chính -->
-    <div class="top-bar">
+    body>
+  <div class="top-bar">
     <button id="toggle-theme">🌙</button>
   </div>
 
   <div class="controls">
-    <button id="music-toggle">🎵 Bật nhạc nền</button>
-    <button id="next-track">⏭️ Tiếp</button>
-    <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
+    <button id="music-toggle">🎵 Nhạc nền</button>
+    <button id="next-track">⏭️</button>
+    <button id="toggle-shuffle">🔀 Ngẫu nhiên</button>
+    <button id="tts-toggle">🗣️ Đọc văn bản</button>
     <button id="mute-all">🛑 Tắt tất cả</button>
-    <div class="status" id="status-msg">🔊 Chỉ một âm thanh được phát</div>
+  </div>
+
+  <div id="tts-display">
+    <div id="tts-container"></div>
+    <button id="record-btn">🔴 Ghi âm</button>
+    <button id="stop-btn">⏹️ Dừng</button>
   </div>
 
   <div id="music-display">
     <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
-    <div id="current-track-name">🎵 Đang phát: ...</div>
+    <div id="current-track-name">🎵 Đang phát</div>
   </div>
 
-  <audio id="background-music" preload="auto"></audio>
+  <audio id="background-music" loop></audio>
 
+  <div id="toast"></div>
+      
   <div class="video-full-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
     <iframe id="player1"></iframe>
     <button class="mute-toggle">🔇 Tắt tiếng</button>
@@ -283,6 +293,9 @@
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="./5controller.js"></script>
+  <script src="./8controller.js"></script>
+      script>
+ script>
   <script src="./acontroller.js"></script>
 </body>
 </html>
