@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="widɓth=device-width, initial-scale=1.0" />
     <title>PHẬT DẠY CON LÀM THEO</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -167,20 +167,7 @@
 
       speechSynthesis.onvoiceschanged = loadVoices;
 
-      // 🌙 Tự động chuyển nền sáng/tối
-
-      function autoSetTheme() {
-        const hour = new Date().getHours();
-        const body = document.body;
-        if (hour >= 18 || hour < 6) {
-          body.classList.add("dark");
-          body.classList.remove("light");
-        } else {
-          body.classList.add("light");
-          body.classList.remove("dark");
-        }
-      }
-      autoSetTheme();
+      
     </script>
 
     <hr />
@@ -267,25 +254,33 @@
   <audio id="background-music" loop></audio>
 
   <!-- Video chính toàn màn hình -->
+      VIDEO MOI NHAT
   <div class="video-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
       <iframe id="player1"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
 
   <!-- 4 video còn lại -->
+      VIEDO A
   <div class="video-grid">
     <div class="video-block" data-player-id="player2" data-video-id="e3uG3NOH0BU">
       <iframe id="player2"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
+    
+    VIEDO B
     <div class="video-block" data-player-id="player3" data-video-id="e3uG3NOH0BU">
       <iframe id="player3"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
+    
+    VIEDO C
     <div class="video-block" data-player-id="player4" data-video-id="e3uG3NOH0BU">
       <iframe id="player4"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
+    
+    VIEDO D
     <div class="video-block" data-player-id="player5" data-video-id="e3uG3NOH0BU">
       <iframe id="player5"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
