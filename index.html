@@ -2,7 +2,7 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="widɓth=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PHẬT DẠY CON LÀM THEO</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -10,7 +10,9 @@
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="./style.css" />
+      <link rel="stylesheet" href="./sacv5.css"/>
+      
     
       
   </head>
@@ -167,7 +169,7 @@
 
       speechSynthesis.onvoiceschanged = loadVoices;
 
-      
+    
     </script>
 
     <hr />
@@ -222,8 +224,8 @@
       >
     </div>
     </nav>
-      <!-- Thanh điều khiển -->
-  <div class="top-bar">
+      <!-- Video chính -->
+    <div class="top-bar">
     <button id="toggle-theme">🌙</button>
   </div>
 
@@ -232,63 +234,41 @@
     <button id="next-track">⏭️ Tiếp</button>
     <button id="toggle-shuffle">🔀 Ngẫu nhiên: Tắt</button>
     <button id="mute-all">🛑 Tắt tất cả</button>
-    <div class="status" id="status-msg"></div>
+    <div class="status" id="status-msg">🔊 Chỉ một âm thanh được phát</div>
   </div>
 
-  <!-- Hiển thị bài hát -->
   <div id="music-display">
     <img id="track-image" src="images/default.jpg" alt="Ảnh nhạc" />
-    <div id="current-track-name">🎵 Đang phát: Chưa có bài nào</div>
+    <div id="current-track-name">🎵 Đang phát: ...</div>
   </div>
 
-  <!-- Mini player -->
-  <div id="mini-player">
-    <span id="mini-track">🎶 Mini Player</span>
-    <button id="mini-pause">⏸</button>
+  <audio id="background-music" preload="auto"></audio>
+
+  <div class="video-full-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
+    <iframe id="player1"></iframe>
+    <button class="mute-toggle">🔇 Tắt tiếng</button>
   </div>
 
-  <!-- Toast thông báo -->
-  <div id="toast"></div>
-
-  <!-- Nhạc nền -->
-  <audio id="background-music" loop></audio>
-
-  <!-- Video chính toàn màn hình -->
-      VIDEO MOI NHAT
-  <div class="video-block" data-player-id="player1" data-video-id="e3uG3NOH0BU">
-      <iframe id="player1"></iframe>
-      <button class="mute-toggle">🔇 Tắt tiếng</button>
-    </div>
-
-  <!-- 4 video còn lại -->
-      
   <div class="video-grid">
     <div class="video-block" data-player-id="player2" data-video-id="e3uG3NOH0BU">
       <iframe id="player2"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-    
-    
     <div class="video-block" data-player-id="player3" data-video-id="e3uG3NOH0BU">
       <iframe id="player3"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-    
-    
     <div class="video-block" data-player-id="player4" data-video-id="e3uG3NOH0BU">
       <iframe id="player4"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
-    
-    
     <div class="video-block" data-player-id="player5" data-video-id="e3uG3NOH0BU">
       <iframe id="player5"></iframe>
       <button class="mute-toggle">🔇 Tắt tiếng</button>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="controller.js"></script>
-  </body>
-  </html>
+  <script src="./controller.js"></script>
+</body>
+</html>
